@@ -137,24 +137,71 @@ a {
   padding: 0 2rem;
 }
 
-/* Section Spacing */
-section {
-  padding: 8rem 0;
+/* Section Headers */
+.section-header {
+  margin-bottom: 5rem;
+  max-width: 800px;
 }
 
-/* Lenis Scroll Recommendation */
-html.lenis {
-  height: auto;
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+  position: relative;
 }
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
+
+.section-title span {
+  color: var(--color-primary);
 }
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+
+.section-intro {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  opacity: 0.7;
+  max-width: 620px;
 }
-.lenis.lenis-stopped {
-  overflow: hidden;
+
+/* Glassmorphism Surface */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
 }
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
+
+[data-theme="dark"] .glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Section Spacing Refinement */
+section {
+  padding: 10rem 0;
+  scroll-margin-top: 100px; /* Precise landing on headings */
+}
+
+/* Specific spacing for sections */
+#projects {
+  padding-top: 6rem; /* Reduced from 12rem */
+}
+
+#achievements {
+  padding-top: 6rem; /* Reduced from 12rem */
+}
+
+#about {
+  padding-top: 6rem;
+  scroll-margin-top: 80px; /* Slightly tighter landing */
+}
+
+.container-narrow {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }

@@ -23,7 +23,7 @@ export default function Hero() {
   );
 
   return (
-    <section className="hero" id="about">
+    <section className="hero" id="hero">
       <div className="hero-bg"></div>
       <div className="hero-content">
         <motion.p 

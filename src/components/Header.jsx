@@ -1,17 +1,36 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Header.css';
 
 export default function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const navItems = [
-    { label: "Work", path: "/work" },
-    { label: "Projects", path: "/projects" },
-    { label: "Achievements", path: "/achievements" },
-    { label: "About", path: "/about" }
+    { label: "Home", href: "#hero", isRoute: false },
+    { label: "Projects", href: "#projects", isRoute: false },
+    { label: "Achievements", href: "#achievements", isRoute: false },
+    { label: "About", href: "#about", isRoute: false },
+    { label: "Work", href: "/work", isRoute: true }
   ];
 
+  const handleAnchorClick = (e, href) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      // Navigate to home first, then scroll after a short delay
+      navigate('/');
+      setTimeout(() => {
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.querySelector(href);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <motion.header 
+    <motion.header
       className="header"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
@@ -20,7 +39,7 @@ export default function Header() {
       <NavLink to="/" className="header-logo" style={{ textDecoration: 'none' }}>
         Vivek<span>.</span>
       </NavLink>
-      
+
       <nav className="header-nav">
         {navItems.map((item, i) => (
           <motion.div
@@ -29,19 +48,37 @@ export default function Header() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7 + i * 0.1, duration: 0.8 }}
           >
-            <NavLink 
-              to={item.path}
-              className={({ isActive }) => isActive ? "header-link active" : "header-link"}
-              style={{ textDecoration: 'none' }}
-            >
-              {item.label}
-            </NavLink>
+            {item.isRoute ? (
+              <NavLink
+                to={item.href}
+                className={({ isActive }) => isActive ? "header-link active" : "header-link"}
+                style={{ textDecoration: 'none' }}
+              >
+                {item.label}
+              </NavLink>
+            ) : (
+              <a
+                href={item.href}
+                className="header-link"
+                style={{ textDecoration: 'none' }}
+                onClick={(e) => handleAnchorClick(e, item.href)}
+              >
+                {item.label}
+              </a>
+            )}
           </motion.div>
         ))}
       </nav>
 
       <div className="header-cta">
-        <a href="#contact" className="btn" style={{ textDecoration: 'none' }}>Let's Talk</a>
+        <a
+          href="#contact"
+          className="btn"
+          style={{ textDecoration: 'none' }}
+          onClick={(e) => handleAnchorClick(e, '#contact')}
+        >
+          Let's Talk
+        </a>
       </div>
     </motion.header>
   );

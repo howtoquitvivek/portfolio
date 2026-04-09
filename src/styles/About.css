@@ -1,0 +1,162 @@
+/* ── About Section Redesign (Vertical Layout) ── */
+
+.about-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 5rem;
+  margin-top: 4rem;
+  align-items: start;
+}
+
+.about-tabs-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.about-tab-vertical {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 1.5rem 0;
+  position: relative;
+  transition: all 0.3s ease;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.about-tab-vertical:last-child {
+  border-bottom: none;
+}
+
+/* Red accent bar on the left */
+.about-tab-vertical::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.5rem;
+  bottom: 1.5rem;
+  width: 4px;
+  border-radius: 4px;
+  background: var(--color-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: scaleY(0.5);
+}
+
+.about-tab-vertical--active::before {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.about-tab-vertical__text {
+  padding-left: 1.5rem;
+}
+
+.about-tab-vertical__label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.about-tab-vertical--active .about-tab-vertical__label {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.about-tab-vertical:hover .about-tab-vertical__label {
+  opacity: 1;
+}
+
+.about-card-v {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  padding: 3rem;
+  align-items: center;
+}
+
+.about-card-v__title {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.about-card-v__description {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  opacity: 0.8;
+  color: var(--color-text);
+}
+
+.about-card-v__image {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px -10px rgba(0,0,0,0.2);
+  border: 1px solid var(--color-border);
+}
+
+.about-card-v__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .about-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .about-tabs-vertical {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+  }
+  
+  .about-tabs-vertical::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .about-tab-vertical {
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+    white-space: nowrap;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--color-border);
+    border-radius: 100px;
+  }
+  
+  .about-tab-vertical::before {
+    display: none;
+  }
+  
+  .about-tab-vertical--active {
+    background: var(--color-primary);
+  }
+  
+  .about-tab-vertical--active .about-tab-vertical__label {
+    color: #fff;
+  }
+  
+  .about-tab-vertical__text {
+    padding-left: 0;
+  }
+
+  .about-card-v {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+}
