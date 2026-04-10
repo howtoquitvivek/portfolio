@@ -50,17 +50,37 @@
   background: transparent;
   color: var(--color-text);
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  transition: color 0.3s ease;
   white-space: nowrap;
+  position: relative; /* Anchor for the pill */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.work-tab-label {
+  position: relative;
+  z-index: 2; /* Keep text above the sliding pill */
 }
 
 .work-tab:hover:not(.work-tab--active) {
-  background: rgba(229, 124, 216, 0.08);
+  background: rgba(229, 124, 216, 0.08); /* Subtle hover for inactive tabs */
 }
 
 .work-tab--active {
-  background-color: var(--color-primary);
   color: #fff;
+}
+
+.work-tab-pill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-primary);
+  border-radius: 999px;
+  z-index: 1;
   box-shadow: 0 4px 14px -4px rgba(229, 124, 216, 0.45);
 }
 

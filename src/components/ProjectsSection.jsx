@@ -39,48 +39,22 @@ const projects = [
   }
 ];
 
-const containerVars = {
-  hidden: { opacity: 0 },
-  show: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
-
-const itemVars = {
-  hidden: { opacity: 0, y: 20 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-};
-
 export default function ProjectsSection() {
   return (
     <section className="section-container container" id="projects">
-      <motion.div
-        className="section-header"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-      >
+      <div className="section-header">
         <h2 className="section-title">Featured <span>Projects</span></h2>
         <p className="section-intro">
           A collection of projects I've built while learning and improving as a developer.
           Focusing on functional design and technical depth.
         </p>
-      </motion.div>
+      </div>
 
-      <motion.div
-        className="projects-grid"
-        variants={containerVars}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
-      >
+      <div className="projects-grid">
         {projects.map((proj, i) => (
           <motion.div
             className="project-card clickable-card"
             key={i}
-            variants={itemVars}
             whileHover={{ y: -5 }}
             whileTap={{ scale: 0.98 }}
             onClick={() => {
@@ -127,7 +101,7 @@ export default function ProjectsSection() {
             </div>
           </motion.div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700;800&display=swap');
 
 :root {
-  /* Light Theme Variables */
-  --color-primary: #E57CD8;
-  --color-secondary: #412A4C;
-  --color-accent: #E57CD8;
-  --color-bg: #FEFBFA;
-  --color-text: #2C1338;
-  --color-border: rgba(44, 19, 56, 0.1);
+  /* Light Theme Variables - Puls from config */
+  --color-primary: var(--config-light-primary, #E57CD8);
+  --color-secondary: var(--config-light-secondary, #412A4C);
+  --color-accent: var(--config-light-accent, #E57CD8);
+  --color-bg: var(--config-light-bg, #FEFBFA);
+  --color-text: var(--config-light-text, #2C1338);
+  --color-border: var(--config-light-border, rgba(44, 19, 56, 0.1));
 
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -19,13 +19,13 @@
 }
 
 [data-theme="dark"] {
-  /* Dark Theme Variables */
-  --color-primary: #E57CD8;
-  --color-secondary: #FEFBFA;
-  --color-accent: #E57CD8;
-  --color-bg: #120A17; /* Very dark rich purple-black */
-  --color-text: #FEFBFA;
-  --color-border: rgba(254, 251, 250, 0.1);
+  /* Dark Theme Variables - Pulls from config */
+  --color-primary: var(--config-dark-primary, #E57CD8);
+  --color-secondary: var(--config-dark-secondary, #FEFBFA);
+  --color-accent: var(--config-dark-accent, #E57CD8);
+  --color-bg: var(--config-dark-bg, #120A17);
+  --color-text: var(--config-dark-text, #FEFBFA);
+  --color-border: var(--config-dark-border, rgba(254, 251, 250, 0.1));
 }
 
 *, *::before, *::after {
@@ -139,7 +139,7 @@ a {
 
 /* Section Headers */
 .section-header {
-  margin-bottom: 5rem;
+  margin-bottom: 2rem;
   max-width: 800px;
 }
 
@@ -183,7 +183,7 @@ a {
 /* Section Spacing Refinement */
 section {
   padding: 10rem 0;
-  scroll-margin-top: 100px; /* Precise landing on headings */
+  scroll-margin-top: 80px; /* Tighter landing on headings */
 }
 
 /* Specific spacing for sections */
@@ -197,7 +197,7 @@ section {
 
 #about {
   padding-top: 6rem;
-  scroll-margin-top: 80px; /* Slightly tighter landing */
+  scroll-margin-top: 80px; 
 }
 
 .container-narrow {

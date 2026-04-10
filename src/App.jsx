@@ -8,10 +8,12 @@ import Footer from './components/Footer';
 // Pages
 import Home from './pages/Home';
 import Work from './pages/Work';
+import ThemeConfigurator from './components/ThemeConfigurator';
 
 function App() {
   return (
     <Router>
+      <ThemeConfigurator />
       <SmoothScroll>
         <div className="portfolio-app">
           <ThemeToggle />

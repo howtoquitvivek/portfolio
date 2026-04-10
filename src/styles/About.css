@@ -1,114 +1,125 @@
-/* ── About Section Redesign (Vertical Layout) ── */
+/* ── About Section Redesign (Toggl Style) ── */
 
 .about-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 5rem;
-  margin-top: 4rem;
-  align-items: start;
+  grid-template-columns: 480px 1fr; /* Lock text width to ensure it never feels cramped */
+  gap: 3.5rem;
+  margin-top: 0;
+  align-items: center;
+  padding-left: calc((100vw - 1200px) / 2 + 2rem);
+  padding-right: 0;
+  width: 100vw;
+  overflow: visible; /* CRITICAL: Allow image to bleed/cut off the screen */
+}
+
+/* Fallback for smaller desktop screens */
+@media (max-width: 1240px) {
+  .about-layout {
+    grid-template-columns: 400px 1fr;
+    padding-left: 2rem;
+  }
 }
 
 .about-tabs-vertical {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 0.5rem;
+  z-index: 2;
+  position: relative;
+  width: 100%;
 }
 
 .about-tab-vertical {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
+  align-items: flex-start;
   background: none;
   border: none;
   text-align: left;
   cursor: pointer;
-  padding: 1.5rem 0;
+  padding: 0.75rem 0;
   position: relative;
   transition: all 0.3s ease;
-  border-bottom: 1px solid var(--color-border);
+  padding-left: 2rem;
+  width: 100%;
 }
 
-.about-tab-vertical:last-child {
-  border-bottom: none;
-}
-
-/* Red accent bar on the left */
-.about-tab-vertical::before {
-  content: "";
+.about-tab-indicator {
   position: absolute;
   left: 0;
-  top: 1.5rem;
-  bottom: 1.5rem;
-  width: 4px;
-  border-radius: 4px;
-  background: var(--color-primary);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  transform: scaleY(0.5);
-}
-
-.about-tab-vertical--active::before {
-  opacity: 1;
-  transform: scaleY(1);
+  top: 10%;
+  bottom: 10%;
+  width: 3px;
+  background-color: var(--color-primary);
+  z-index: 1;
 }
 
 .about-tab-vertical__text {
-  padding-left: 1.5rem;
+  width: 100%;
 }
 
-.about-tab-vertical__label {
-  display: block;
+.about-tab-vertical__title {
   font-family: var(--font-heading);
-  font-size: 1.3rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--color-text);
-  opacity: 0.5;
-  transition: all 0.3s ease;
+  margin-bottom: 0.75rem;
+  transition: color 0.3s ease;
+  opacity: 0.6;
 }
 
-.about-tab-vertical--active .about-tab-vertical__label {
+.about-tab-vertical--active .about-tab-vertical__title {
   opacity: 1;
   color: var(--color-primary);
 }
 
-.about-tab-vertical:hover .about-tab-vertical__label {
+.about-tab-vertical__description {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  opacity: 0.6;
+  margin-top: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.about-tab-vertical--active .about-tab-vertical__description {
   opacity: 1;
 }
 
-.about-card-v {
+/* Right Content: Image Display */
+.about-content-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding-left: 2rem;
+  overflow: visible; /* Ensure nothing here crops the image */
+}
+
+.about-image-display-wrapper {
+  width: 100%;
+  height: 100%;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 3rem;
-  padding: 3rem;
+  place-items: center start;
+}
+
+.about-image-display {
+  grid-area: 1 / 1; /* Overlay images if needed, though handle transition is fast */
+  width: 100%;
+  height: 100%;
+  display: flex;
   align-items: center;
 }
 
-.about-card-v__title {
-  font-family: var(--font-heading);
-  font-size: 2.2rem;
-  font-weight: 700;
-  color: var(--color-text);
-  margin-bottom: 1.5rem;
-}
-
-.about-card-v__description {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  line-height: 1.7;
-  opacity: 0.8;
-  color: var(--color-text);
-}
-
-.about-card-v__image {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px -10px rgba(0,0,0,0.2);
-  border: 1px solid var(--color-border);
-}
-
-.about-card-v__image img {
-  width: 100%;
+.about-image-display img {
+  width: auto;
+  min-width: 900px; /* Strong minimum to force 'overflow' look on smaller desktop */
   height: auto;
+  max-height: 600px;
+  object-fit: contain;
+  object-position: left center; /* Keep the left/important part of the image in view */
   display: block;
 }
 
@@ -116,47 +127,24 @@
 @media (max-width: 1024px) {
   .about-layout {
     grid-template-columns: 1fr;
-    gap: 3rem;
-  }
-  
-  .about-tabs-vertical {
-    flex-direction: row;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scrollbar-width: none;
-  }
-  
-  .about-tabs-vertical::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .about-tab-vertical {
-    border-bottom: none;
-    padding: 1rem 1.5rem;
-    white-space: nowrap;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--color-border);
-    border-radius: 100px;
-  }
-  
-  .about-tab-vertical::before {
-    display: none;
-  }
-  
-  .about-tab-vertical--active {
-    background: var(--color-primary);
-  }
-  
-  .about-tab-vertical--active .about-tab-vertical__label {
-    color: #fff;
-  }
-  
-  .about-tab-vertical__text {
-    padding-left: 0;
+    gap: 4rem;
   }
 
-  .about-card-v {
-    grid-template-columns: 1fr;
-    padding: 2rem;
+  .about-tabs-vertical {
+    gap: 1.5rem;
+  }
+
+  .about-tab-vertical {
+    padding: 1rem 0;
+    padding-left: 2rem;
+  }
+
+  .about-tab-vertical__title {
+    font-size: 1.3rem;
+  }
+
+  .about-image-display {
+    aspect-ratio: auto;
+    height: 350px;
   }
 }

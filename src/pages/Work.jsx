@@ -120,52 +120,50 @@ export default function Work() {
             className={`work-tab ${i === activeTab ? 'work-tab--active' : ''}`}
             onClick={() => setActiveTab(i)}
           >
-            {tab.label}
+            {i === activeTab && (
+              <motion.div
+                layoutId="active-pill"
+                className="work-tab-pill"
+                transition={{ type: "spring", stiffness: 500, damping: 35 }}
+              />
+            )}
+            <span className="work-tab-label">{tab.label}</span>
           </button>
         ))}
       </div>
 
       {/* ── Content card ── */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current.id}
-          className="work-card"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <div className="work-card__body">
-            <h2 className="work-card__heading">{current.heading}</h2>
-            <p className="work-card__desc">{current.description}</p>
+      <div className="work-card">
+        <div className="work-card__body">
+          <h2 className="work-card__heading">{current.heading}</h2>
+          <p className="work-card__desc">{current.description}</p>
 
-            <div className="work-card__features">
-              <span className="work-card__features-label">What I bring:</span>
-              <ul className="work-card__features-list">
-                {current.features.map((f, i) => (
-                  <li key={i}>
-                    <span className="feature-diamond">✦</span>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <a
-              href={current.ctaHref}
-              className="btn btn-secondary work-card__cta"
-              target={current.ctaHref.startsWith('http') ? '_blank' : undefined}
-              rel={current.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-            >
-              {current.cta}
-            </a>
+          <div className="work-card__features">
+            <span className="work-card__features-label">What I bring:</span>
+            <ul className="work-card__features-list">
+              {current.features.map((f, i) => (
+                <li key={i}>
+                  <span className="feature-diamond">✦</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="work-card__image">
-            <img src={current.image} alt={current.label} />
-          </div>
-        </motion.div>
-      </AnimatePresence>
+          <a
+            href={current.ctaHref}
+            className="btn btn-secondary work-card__cta"
+            target={current.ctaHref.startsWith('http') ? '_blank' : undefined}
+            rel={current.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+          >
+            {current.cta}
+          </a>
+        </div>
+
+        <div className="work-card__image">
+          <img src={current.image} alt={current.label} />
+        </div>
+      </div>
     </motion.div>
   );
 }
