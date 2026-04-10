@@ -55,7 +55,7 @@ export default function Projects() {
   };
 
   return (
-    <motion.div 
+    <motion.div
       className="page-container" style={{ maxWidth: '1200px' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -67,7 +67,7 @@ export default function Projects() {
         A collection of projects I’ve built while learning and improving as a developer.
       </p>
 
-      <motion.div 
+      <motion.div
         className="projects-grid"
         variants={containerVars}
         initial="hidden"
@@ -77,7 +77,7 @@ export default function Projects() {
           <motion.div className="project-card" key={i} variants={itemVars}>
             <h3>{proj.title}</h3>
             <p>{proj.desc}</p>
-            
+
             <div className="project-tags">
               {proj.tags.map(tag => (
                 <span key={tag} className="project-tag">{tag}</span>
