@@ -1,6 +1,7 @@
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Header.css';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const location = useLocation();
@@ -71,14 +72,7 @@ export default function Header() {
       </nav>
 
       <div className="header-cta">
-        <a
-          href="#contact"
-          className="btn"
-          style={{ textDecoration: 'none' }}
-          onClick={(e) => handleAnchorClick(e, '#contact')}
-        >
-          Let's Talk
-        </a>
+        <ThemeToggle />
       </div>
     </motion.header>
   );

@@ -6,9 +6,9 @@
   gap: 3.5rem;
   margin-top: 0;
   align-items: center;
-  padding-left: calc((100vw - 1200px) / 2 + 2rem);
+  padding-left: max(2rem, calc((100vw - 1200px) / 2 + 2rem));
   padding-right: 0;
-  width: 100vw;
+  width: 100%;
   overflow: visible; /* CRITICAL: Allow image to bleed/cut off the screen */
 }
 
@@ -42,6 +42,7 @@
   transition: all 0.3s ease;
   padding-left: 2rem;
   width: 100%;
+  outline: none;
 }
 
 .about-tab-indicator {
@@ -87,6 +88,20 @@
   opacity: 1;
 }
 
+.about-tab-mobile-image {
+  display: none; /* Desktop hidden */
+  width: 100%;
+  overflow: hidden;
+}
+
+.about-tab-mobile-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  object-fit: cover;
+  border: none;
+}
+
 /* Right Content: Image Display */
 .about-content-area {
   display: flex;
@@ -127,24 +142,61 @@
 @media (max-width: 1024px) {
   .about-layout {
     grid-template-columns: 1fr;
-    gap: 4rem;
+    gap: 3rem;
+    padding-right: 2rem;
   }
 
   .about-tabs-vertical {
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .about-tab-vertical {
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     padding-left: 2rem;
   }
 
   .about-tab-vertical__title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .about-tab-vertical__description {
+    font-size: 0.95rem;
+  }
+
+  .about-content-area {
+    display: none; /* Hide desktop image area on mobile */
+  }
+
+  .about-tab-mobile-image {
+    display: block; /* Show inline image on mobile */
   }
 
   .about-image-display {
-    aspect-ratio: auto;
-    height: 350px;
+    display: none; /* Extra safety */
+  }
+}
+
+@media (max-width: 640px) {
+  .about-layout {
+    gap: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .about-tab-vertical {
+    padding-left: 1.5rem;
+  }
+
+  .about-tab-vertical__title {
+    font-size: 1.25rem;
+  }
+
+  .about-image-display {
+    min-height: 200px;
+  }
+  
+  .about-image-display img {
+    max-width: 100%;
   }
 }

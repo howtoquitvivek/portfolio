@@ -77,6 +77,20 @@ export default function AboutSection() {
               <div className="about-tab-vertical__text">
                 <h3 className="about-tab-vertical__title">{section.title}</h3>
                 <p className="about-tab-vertical__description">{section.description}</p>
+                {/* Mobile Image (Accordion Style) */}
+                <AnimatePresence>
+                  {i === activeIndex && (
+                    <motion.div 
+                      className="about-tab-mobile-image"
+                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                      animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                    >
+                      <img src={section.image} alt={section.label} />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </button>
           ))}

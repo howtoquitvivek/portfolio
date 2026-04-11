@@ -4,6 +4,7 @@ import SmoothScroll from './components/SmoothScroll';
 import ThemeToggle from './components/ThemeToggle';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import FloatingCTA from './components/FloatingCTA';
 
 // Pages
 import Home from './pages/Home';
@@ -16,7 +17,7 @@ function App() {
       <ThemeConfigurator />
       <SmoothScroll>
         <div className="portfolio-app">
-          <ThemeToggle />
+          <FloatingCTA />
           <Header />
           <main>
             <Routes>
