@@ -16,10 +16,31 @@ import {
 } from 'lucide-react';
 import { FaGithub as Github } from 'react-icons/fa';
 
+const EMAIL = 'vivekbarman425@gmail.com';
+
 export const config = {
   // Global Settings
   activeThemeName: 'pink',
   faviconPath: '/favicon_io_3/',
+
+  // Contact Information
+  contact: {
+    email: EMAIL,
+    socials: {
+      github: {
+        url: 'https://github.com/howtoquitvivek',
+        handle: '@howtoquitvivek'
+      },
+      linkedin: {
+        url: 'https://linkedin.com/in/vivek-barman',
+        handle: 'vivek-barman'
+      },
+      instagram: {
+        url: 'https://instagram.com/howtoquitvivek',
+        handle: '@howtoquitvivek'
+      }
+    }
+  },
 
   // Hero Section
   hero: {
@@ -118,7 +139,7 @@ export const config = {
         description: 'Building modern, responsive web applications from concept to deployment. I work across the entire stack — React frontends, Node/Express backends, databases, and cloud deployment.',
         features: ['React & Next.js SPAs', 'REST & GraphQL APIs', 'Database design & optimization', 'CI/CD & cloud deployment'],
         cta: 'Start a project',
-        ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Web Development Project',
+        ctaHref: `mailto:${EMAIL}?subject=Web Development Project`,
         item: 'webdev' // used for asset resolution
       },
       {
@@ -128,7 +149,7 @@ export const config = {
         description: 'Applying machine learning to solve real-world problems — from data preprocessing and model training to evaluation and deployment of predictive systems.',
         features: ['Data analysis & visualization', 'Model training & evaluation', 'NLP & computer vision', 'ML pipeline development'],
         cta: 'Discuss an ML project',
-        ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Machine Learning Project',
+        ctaHref: `mailto:${EMAIL}?subject=Machine Learning Project`,
         item: 'ml'
       },
       {
@@ -148,7 +169,7 @@ export const config = {
         description: "I'm open to internships, freelance work, and full-time roles where I can grow and deliver value. I bring strong fundamentals, fast learning, and genuine passion.",
         features: ['Internships & co-ops', 'Freelance contracts', 'Full-time positions', 'Remote or on-site'],
         cta: 'Get in touch',
-        ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Job Opportunity',
+        ctaHref: `mailto:${EMAIL}?subject=Job Opportunity`,
         item: 'hireme'
       },
       {
@@ -158,7 +179,7 @@ export const config = {
         description: 'Crafting performant Android applications with Kotlin and Jetpack Compose. From idea through Play Store publishing — clean architecture, smooth UX.',
         features: ['Kotlin & Jetpack Compose', 'Material Design 3', 'Room, Retrofit & Hilt', 'Play Store deployment'],
         cta: 'Build an app together',
-        ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Android App Project',
+        ctaHref: `mailto:${EMAIL}?subject=Android App Project`,
         item: 'android'
       }
     ]
