@@ -142,6 +142,11 @@ a {
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
 }
 
+.theme-switch:active {
+  transform: scale(0.96) translateY(2px);
+  background-color: color-mix(in srgb, var(--color-text) 15%, transparent);
+}
+
 /* Floating FAB for Mobile and High Visibility */
 .btn-floating {
   position: fixed;
@@ -271,7 +276,7 @@ a {
 }
 
 .theme-expand-btn:active {
-  transform: scale(0.9);
+  transform: scale(0.96) translateY(2px);
 }
 
 /* Subtle Glass highlight */
@@ -344,7 +349,7 @@ a {
 
 /* Section Spacing Refinement */
 section {
-  padding: 10rem 0;
+  padding: 8rem 0;
   scroll-margin-top: 80px;
   /* Tighter landing on headings */
 }
@@ -362,6 +367,7 @@ section {
 
 #about {
   padding-top: 6rem;
+  padding-bottom: 2rem;
   scroll-margin-top: 80px;
 }
 

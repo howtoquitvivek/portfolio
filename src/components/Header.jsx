@@ -91,7 +91,7 @@ export default function Header() {
               x: isThemeExpanded ? 0 : 20 
             }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            style={{ overflow: 'hidden', display: 'flex', alignItems: 'center' }}
+            style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '8px 0' }}
           >
             <div style={{ paddingRight: '4px' }}>
               <ThemeToggle />
