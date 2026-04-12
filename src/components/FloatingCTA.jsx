@@ -1,9 +1,55 @@
+import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function FloatingCTA() {
+  const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Always show on sub-pages
+    if (location.pathname !== '/') {
+      setIsVisible(true);
+      return;
+    }
+
+    let heroVisible = true;
+    let contactVisible = false;
+
+    const updateVisibility = () => {
+      setIsVisible(!heroVisible && !contactVisible);
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.target.id === 'hero') {
+          heroVisible = entry.isIntersecting;
+        }
+        if (entry.target.id === 'contact') {
+          contactVisible = entry.isIntersecting;
+        }
+      });
+      updateVisibility();
+    }, { 
+      threshold: 0,
+      rootMargin: '-80px 0px 0px 0px' // Offset for header/scrolling
+    });
+
+    const hero = document.querySelector('#hero');
+    const contact = document.querySelector('#contact');
+
+    if (hero) observer.observe(hero);
+    if (contact) observer.observe(contact);
+
+    // Initial check
+    updateVisibility();
+
+    return () => {
+      if (hero) observer.unobserve(hero);
+      if (contact) observer.unobserve(contact);
+    };
+  }, [location.pathname]);
 
   const handleContactClick = (e) => {
     e.preventDefault();
@@ -20,17 +66,27 @@ export default function FloatingCTA() {
   };
 
   return (
-    <motion.a
-      href="#contact"
-      className="btn-floating"
-      onClick={handleContactClick}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ delay: 2, duration: 0.5, type: 'spring' }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      Let's Talk
-    </motion.a>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.a
+          href="#contact"
+          className="btn-floating"
+          onClick={handleContactClick}
+          initial={{ y: 100, opacity: 0, scale: 0.8 }}
+          animate={{ y: 0, opacity: 1, scale: 1 }}
+          exit={{ y: 100, opacity: 0, scale: 0.8 }}
+          transition={{ 
+            duration: 0.4, 
+            type: 'spring',
+            stiffness: 260,
+            damping: 20
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Let's Talk
+        </motion.a>
+      )}
+    </AnimatePresence>
   );
 }

@@ -111,7 +111,6 @@ a {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background-color: rgba(0, 0, 0, 0.05); /* Safe fallback */
   background-color: color-mix(in srgb, var(--color-text) 5%, transparent);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -120,23 +119,15 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid rgba(0, 0, 0, 0.1); /* Safe fallback */
   border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
   font-size: 1.2rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
 
-[data-theme="dark"] .theme-switch {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
-}
-
 .theme-switch:hover {
   transform: translateY(-2px);
-  background-color: rgba(0, 0, 0, 0.1);
   background-color: color-mix(in srgb, var(--color-text) 10%, transparent);
-  border-color: rgba(0, 0, 0, 0.2);
   border-color: color-mix(in srgb, var(--color-text) 30%, transparent);
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
@@ -150,7 +141,7 @@ a {
   min-width: 140px;
   height: 52px;
   border-radius: 26px;
-  background-color: rgba(229, 124, 216, 0.15); /* Explicit RGBA for better mobile support */
+  background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   color: var(--color-text);
@@ -159,7 +150,7 @@ a {
   justify-content: center;
   cursor: pointer;
   z-index: 9999;
-  border: 1px solid rgba(229, 124, 216, 0.3);
+  border: 1px solid color-mix(in srgb, var(--color-primary) 30%, transparent);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 16px;
@@ -170,7 +161,7 @@ a {
 
 .btn-floating:hover {
   transform: scale(1.05) translateY(-5px);
-  background-color: rgba(229, 124, 216, 0.25);
+  background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
   border-color: var(--color-primary);
   box-shadow: 0 12px 40px rgba(229, 124, 216, 0.2);
 }
