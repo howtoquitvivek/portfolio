@@ -22,10 +22,9 @@ export const useThemeMode = () => {
 /**
  * Resolves themed asset paths based on the global configuration.
  */
-export const getThemedAsset = (section, type, item, isDark) => {
-  const mode = isDark ? 'dark' : 'light';
+export const getThemedAsset = (section, type, item) => {
   const theme = config.activeThemeName || 'pink';
-  return `/assets/${section}/${theme}/${mode}/${mode}-${type}-${section}-${item}.png`;
+  return `/assets/${section}/${theme}/${type}-${section}-${item}.png`;
 };
 
 /**

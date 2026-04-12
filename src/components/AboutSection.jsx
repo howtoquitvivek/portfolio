@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/About.css';
 
-import { getThemedAsset, useThemeMode } from '../utils/themeUtils';
+import { getThemedAsset } from '../utils/themeUtils';
 
 const sectionsData = [
   {
@@ -37,12 +37,10 @@ const sectionsData = [
 
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const isDark = useThemeMode();
-
   const sections = sectionsData.map(s => ({
     ...s,
-    image: getThemedAsset('about', 'pc', s.id, isDark),
-    mobileImage: getThemedAsset('about', 'mobile', s.id, isDark)
+    image: getThemedAsset('about', 'pc', s.id),
+    mobileImage: getThemedAsset('about', 'mobile', s.id)
   }));
 
   const current = sections[activeIndex];
