@@ -94,7 +94,7 @@ export default function Header() {
             style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '8px 0' }}
           >
             <div style={{ paddingRight: '4px' }}>
-              <ThemeToggle />
+              <ThemeToggle onToggle={() => setTimeout(() => setIsThemeExpanded(false), 400)} />
             </div>
           </motion.div>
           
