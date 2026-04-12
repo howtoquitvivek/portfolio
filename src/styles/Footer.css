@@ -7,7 +7,8 @@
 }
 
 .footer-top {
-  padding: 6rem 2rem 2rem; /* Consistently compact to fit screen */
+  padding: 12rem 2rem 2rem;
+  /* Increased top space for breathing room */
   background: var(--color-bg);
   position: relative;
   z-index: 2;
@@ -35,7 +36,8 @@
 .footer-waves-container {
   position: relative;
   width: 100%;
-  height: 3vh; /* Ultra-low profile waves */
+  height: 3vh;
+  /* Ultra-low profile waves */
   margin-bottom: -1px;
   min-height: 30px;
   max-height: 50px;
@@ -99,7 +101,8 @@
 /* ── Bottom Base Layer ── */
 .footer-bottom-section {
   background: var(--color-primary);
-  padding: 1.5rem 2rem 2.5rem; /* Ultra-compact base */
+  padding: 1.5rem 2rem 2.5rem;
+  /* Ultra-compact base */
   position: relative;
   z-index: 2;
   color: #fff;
@@ -111,7 +114,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem; /* Reduced gap */
+  gap: 1.5rem;
+  /* Reduced gap */
 }
 
 /* Icons in base */
@@ -180,10 +184,12 @@
   bottom: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(0);
-  background: rgba(15, 15, 15, 0.75); /* Dark Glass */
+  background: rgba(15, 15, 15, 0.75);
+  /* Dark Glass */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
-  color: #ffffff; /* White text */
+  color: #ffffff;
+  /* White text */
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.75rem;
@@ -218,13 +224,14 @@
 }
 
 @media (max-width: 768px) {
-
   .footer-top {
-    padding-bottom: 6rem;
+    padding-top: 12rem;
+    /* Pushes content above further up out of screen */
+    padding-bottom: 4rem;
   }
 
   .footer-bottom-section {
-    padding: 2rem 1.5rem 3rem;
+    padding: 2rem 2rem 4rem;
+    /* Dramatically increased base height */
   }
-
 }
