@@ -79,7 +79,7 @@
     /* Ensure it fills the full screen height */
     justify-content: center;
     /* Center content vertically just like PC */
-    padding-top: 6rem;
+    padding-top: 5rem;
     /* Reduced space to clear header */
     padding-bottom: 1rem;
   }
