@@ -1,13 +1,24 @@
 .hero {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 8rem 3rem 4rem;
+  padding: 8rem 2rem 4rem;
   position: relative;
   overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    justify-content: flex-start;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    min-height: auto; /* Allow content to dictate height if needed, or keep 100svh if preferred */
+    height: auto;
+  }
 }
 
 .hero-content {

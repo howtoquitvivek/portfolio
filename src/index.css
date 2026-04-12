@@ -147,6 +147,10 @@ a {
   background-color: color-mix(in srgb, var(--color-text) 15%, transparent);
 }
 
+[data-theme="dark"] .theme-switch:active {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
 /* Floating FAB for Mobile and High Visibility */
 .btn-floating {
   position: fixed;
