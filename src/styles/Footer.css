@@ -225,13 +225,13 @@
 
 @media (max-width: 768px) {
   .footer-top {
-    padding-top: 12rem;
+    padding-top: 8rem;
     /* Pushes content above further up out of screen */
     padding-bottom: 4rem;
   }
 
   .footer-bottom-section {
-    padding: 2rem 2rem 4rem;
+    padding: 2rem 2rem 6rem;
     /* Dramatically increased base height */
   }
 }
