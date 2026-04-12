@@ -75,10 +75,13 @@
 
 @media (max-width: 768px) {
   .hero {
-    min-height: 100svh; /* Ensure it fills the full screen height */
-    justify-content: center; /* Center content vertically just like PC */
-    padding-top: 5rem; /* Space to clear header */
-    padding-bottom: 2rem;
+    min-height: 95svh;
+    /* Ensure it fills the full screen height */
+    justify-content: center;
+    /* Center content vertically just like PC */
+    padding-top: 6rem;
+    /* Reduced space to clear header */
+    padding-bottom: 1rem;
   }
 
   .hero-subtitle {
@@ -97,7 +100,8 @@
     margin-bottom: 2.5rem;
     line-height: 1.7;
     letter-spacing: 0.01em;
-    max-width: 90%; /* Wider width to prevent premature line breaks */
+    max-width: 90%;
+    /* Wider width to prevent premature line breaks */
     margin-left: auto;
     margin-right: auto;
   }
