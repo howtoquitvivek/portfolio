@@ -98,7 +98,6 @@ export default function Header() {
             </div>
           </motion.div>
           
-          <div className="header-divider" />
           
           <button 
             className={`theme-expand-btn ${isThemeExpanded ? 'active' : ''}`}

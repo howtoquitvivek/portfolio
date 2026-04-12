@@ -34,6 +34,22 @@
     font-size: 1.1rem;
     margin-bottom: 2.5rem;
   }
+
+  .hero-cta {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .hero-cta .btn {
+    flex: 1;
+    min-width: 0; /* Allow shrinking */
+    padding: 14px 12px;
+    font-size: 0.85rem;
+    white-space: nowrap; /* Prevent awkward wrapping for this balanced look */
+  }
 }
 
 .hero-content {
