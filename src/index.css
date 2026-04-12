@@ -119,17 +119,16 @@ a {
 .theme-switch {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
-  background-color: rgba(128, 128, 128, 0.05); /* Fallback */
-  background-color: color-mix(in srgb, var(--color-text) 5%, transparent);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  backdrop-filter: blur(16px) saturate(180%);
+  border-radius: 50%;
+  background-color: transparent;
+  -webkit-backdrop-filter: blur(25px) saturate(160%);
+  backdrop-filter: blur(25px) saturate(160%);
   color: var(--color-text);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border: 1px solid color-mix(in srgb, var(--color-text) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
   font-size: 1.2rem;
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
@@ -152,7 +151,8 @@ a {
   min-width: 140px;
   height: 52px;
   border-radius: 26px;
-  background-color: rgba(229, 124, 216, 0.15); /* Fallback */
+  background-color: rgba(229, 124, 216, 0.15);
+  /* Fallback */
   background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   backdrop-filter: blur(16px) saturate(180%);
@@ -216,12 +216,16 @@ a {
 
 /* Header Contact Button (Mobile) */
 .header-contact-btn {
-  background: rgba(255, 255, 255, 0);
+  /* background: rgba(255, 255, 255, 0); */
   -webkit-backdrop-filter: blur(25px) saturate(160%);
   backdrop-filter: blur(25px) saturate(160%);
   border: 1px solid color-mix(in srgb, var(--color-text) 10%, transparent);
   color: var(--color-text);
-  padding: 10px 24px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
   border-radius: 100px;
   font-family: var(--font-heading);
   font-weight: 700;
@@ -229,6 +233,45 @@ a {
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   letter-spacing: 0.02em;
   position: relative;
+}
+
+/* Header Collapsible Theme Toggle */
+.theme-collapsible-wrapper {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
+
+.header-divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border);
+  margin-left: 2px;
+  margin-right: 1px;
+  opacity: 0.8;
+}
+
+.theme-expand-btn {
+  width: 28px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0;
+}
+
+.theme-expand-btn:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+.theme-expand-btn:active {
+  transform: scale(0.9);
 }
 
 /* Subtle Glass highlight */

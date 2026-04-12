@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Hero.css';
 
@@ -62,7 +63,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 1.4 }}
         >
           <a href={ctaPrimary.href} download={ctaPrimary.download} className="btn btn-primary">{ctaPrimary.label}</a>
-          <a href={ctaSecondary.href} className="btn btn-secondary">{ctaSecondary.label}</a>
+          <Link to={ctaSecondary.href} className="btn btn-secondary">{ctaSecondary.label}</Link>
         </motion.div>
       </div>
     </section>

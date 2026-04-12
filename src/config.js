@@ -31,7 +31,7 @@ export const config = {
     },
     description: "I’m a full-stack developer learning by building scalable applications and improving my backend and system design skills through real projects.",
     ctaPrimary: { label: 'Download Resume', href: '/resume.pdf', download: 'Vivek_Barman_Resume.pdf' },
-    ctaSecondary: { label: 'See My Work', href: '#demo' }
+    ctaSecondary: { label: 'See My Work', href: '/work' }
   },
 
   // Theme Colors

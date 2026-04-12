@@ -1,9 +1,12 @@
+import { useState } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import '../styles/Header.css';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
+  const [isThemeExpanded, setIsThemeExpanded] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -71,7 +74,6 @@ export default function Header() {
       </nav>
 
       <div className="header-cta">
-        <ThemeToggle className="hide-on-mobile" />
         <a 
           href="#contact" 
           className="header-contact-btn show-on-mobile"
@@ -79,6 +81,33 @@ export default function Header() {
         >
           Let's Talk
         </a>
+        
+        <div className="theme-collapsible-wrapper">
+          <motion.div
+            initial={false}
+            animate={{ 
+              width: isThemeExpanded ? 'auto' : 0, 
+              opacity: isThemeExpanded ? 1 : 0,
+              x: isThemeExpanded ? 0 : 20 
+            }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ overflow: 'hidden', display: 'flex', alignItems: 'center' }}
+          >
+            <div style={{ paddingRight: '4px' }}>
+              <ThemeToggle />
+            </div>
+          </motion.div>
+          
+          <div className="header-divider" />
+          
+          <button 
+            className={`theme-expand-btn ${isThemeExpanded ? 'active' : ''}`}
+            onClick={() => setIsThemeExpanded(!isThemeExpanded)}
+            aria-label={isThemeExpanded ? "Collapse theme" : "Expand theme"}
+          >
+            {isThemeExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+          </button>
+        </div>
       </div>
     </motion.header>
   );

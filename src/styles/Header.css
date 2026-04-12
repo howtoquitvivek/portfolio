@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  padding: 1.25rem 4rem;
+  padding: 1.25rem 4rem 1.25rem 2rem;
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Perfect 3-column split for centering */
   align-items: center;
@@ -89,6 +89,9 @@
 
 .header-cta {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .header-cta .btn {
@@ -107,7 +110,7 @@
 
 @media (max-width: 992px) {
   .header {
-    padding: 1rem 2rem;
+    padding: 1rem 1rem 1rem 1.5rem;
     display: flex;
     justify-content: space-between;
   }

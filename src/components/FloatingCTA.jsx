@@ -92,10 +92,6 @@ export default function FloatingCTA() {
         )}
       </AnimatePresence>
       
-      {/* Mobile: Persistent Floating Theme Toggle */}
-      <div className="show-on-mobile">
-        <ThemeToggle variant="floating" />
-      </div>
     </>
   );
 }
