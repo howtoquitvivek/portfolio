@@ -14,10 +14,25 @@
 @media (max-width: 768px) {
   .hero {
     justify-content: flex-start;
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-    min-height: auto; /* Allow content to dictate height if needed, or keep 100svh if preferred */
+    padding-top: 9rem;
+    padding-bottom: 4rem;
+    min-height: auto;
     height: auto;
+  }
+
+  .hero-subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: clamp(2.5rem, 12vw, 3.8rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
   }
 }
 
@@ -80,5 +95,5 @@
   z-index: 0;
   pointer-events: none;
   opacity: 0.5;
-  background: radial-gradient(circle at center, rgba(229,124,216,0.15) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(229, 124, 216, 0.15) 0%, transparent 60%);
 }
