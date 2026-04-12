@@ -2,97 +2,20 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/Work.css';
 
-import webdevImg from '../assets/work-webdev.png';
-import mlImg from '../assets/work-ml.png';
-import opensourceImg from '../assets/work-opensource.png';
-import hiremeImg from '../assets/work-hireme.png';
-import androidImg from '../assets/work-android.png';
+import { config } from '../config';
+import { getStaticAsset } from '../utils/themeUtils';
 
-const tabs = [
-  {
-    id: 'webdev',
-    label: 'Web Development',
-    heading: 'Full-stack web applications',
-    description:
-      'Building modern, responsive web applications from concept to deployment. I work across the entire stack — React frontends, Node/Express backends, databases, and cloud deployment.',
-    features: [
-      'React & Next.js SPAs',
-      'REST & GraphQL APIs',
-      'Database design & optimization',
-      'CI/CD & cloud deployment',
-    ],
-    cta: 'Start a project',
-    ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Web Development Project',
-    image: webdevImg,
-  },
-  {
-    id: 'ml',
-    label: 'Machine Learning',
-    heading: 'Intelligent solutions with ML',
-    description:
-      'Applying machine learning to solve real-world problems — from data preprocessing and model training to evaluation and deployment of predictive systems.',
-    features: [
-      'Data analysis & visualization',
-      'Model training & evaluation',
-      'NLP & computer vision',
-      'ML pipeline development',
-    ],
-    cta: 'Discuss an ML project',
-    ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Machine Learning Project',
-    image: mlImg,
-  },
-  {
-    id: 'opensource',
-    label: 'Open Source',
-    heading: 'Contributing to open source',
-    description:
-      'I actively contribute to open-source projects and am always looking for impactful repositories to collaborate on. Let\'s build something the community can use.',
-    features: [
-      'Bug fixes & feature PRs',
-      'Documentation improvements',
-      'Code reviews & mentoring',
-      'Community-driven projects',
-    ],
-    cta: 'View my GitHub',
-    ctaHref: 'https://github.com/howtoquitvivek',
-    image: opensourceImg,
-  },
-  {
-    id: 'hireme',
-    label: 'Hire Me',
-    heading: 'Available for opportunities',
-    description:
-      'I\'m open to internships, freelance work, and full-time roles where I can grow and deliver value. I bring strong fundamentals, fast learning, and genuine passion.',
-    features: [
-      'Internships & co-ops',
-      'Freelance contracts',
-      'Full-time positions',
-      'Remote or on-site',
-    ],
-    cta: 'Get in touch',
-    ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Job Opportunity',
-    image: hiremeImg,
-  },
-  {
-    id: 'android',
-    label: 'Android Apps',
-    heading: 'Native Android development',
-    description:
-      'Crafting performant Android applications with Kotlin and Jetpack Compose. From idea through Play Store publishing — clean architecture, smooth UX.',
-    features: [
-      'Kotlin & Jetpack Compose',
-      'Material Design 3',
-      'Room, Retrofit & Hilt',
-      'Play Store deployment',
-    ],
-    cta: 'Build an app together',
-    ctaHref: 'mailto:vivekbarman425@gmail.com?subject=Android App Project',
-    image: androidImg,
-  },
-];
+const { work } = config;
+const { title: workTitle, subtitle: workSubtitle, tabs: workTabs } = work;
 
 export default function Work() {
   const [activeTab, setActiveTab] = useState(0);
+
+  const tabs = workTabs.map(t => ({
+    ...t,
+    image: getStaticAsset('work', t.item)
+  }));
+
   const current = tabs[activeTab];
 
   return (
@@ -104,10 +27,9 @@ export default function Work() {
       transition={{ duration: 0.5 }}
     >
       {/* ── Hero heading ── */}
-      <h1 className="work-title">Work With Me</h1>
+      <h1 className="work-title">{workTitle}</h1>
       <p className="work-subtitle">
-        I'm open to real-world projects, collaborations, and learning
-        opportunities where I can build and improve as a developer.
+        {workSubtitle}
       </p>
 
       {/* ── Pill tabs ── */}

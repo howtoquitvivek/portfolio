@@ -3,40 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 import '../styles/Achievements.css';
 
-import cloudImg from '../assets/achievement-cloud.png';
-import hackathonCS from '../assets/achievement-cybersheild25.png';
-import hackathonHH from '../assets/achievement-hackhazard25.png';
-import internStock8 from '../assets/achievement-stock8.png'
-
-const milestones = [
-  {
-    title: "AWS Certified Cloud Practitioner",
-    desc: "Earned my first global certification! (CLF-02)",
-    date: "Apr 2026",
-    image: cloudImg
-  },
-  {
-    title: "App Development Intern @Stock8",
-    desc: "Started working on live application to build real-world mobile solutions and improve my programming practices.",
-    date: "Jan 2026",
-    image: internStock8
-  },
-  {
-    title: "CyberShield 2025 Winner",
-    desc: "Secured first place at the National CyberShield Hackathon at JEC Jabalpur, competing against a massive pool of talented developers.",
-    date: "Nov 2025",
-    image: hackathonCS
-  },
-  {
-    title: "HackHazard 2025 Top 100",
-    desc: "Built EduFinance with Team Bytegg and secured a Top 100 spot globally out of thousands of participating teams.",
-    date: "Jul 2025",
-    image: hackathonHH
-  }
-];
+import { config } from '../config';
+import { getStaticAsset } from '../utils/themeUtils';
 
 export default function AchievementsSection() {
   const [selectedImage, setSelectedImage] = useState(null);
+
+  const milestones = config.achievements.map(ms => ({
+    ...ms,
+    image: getStaticAsset('achievement', ms.item)
+  }));
 
   const openLightbox = (img) => setSelectedImage(img);
   const closeLightbox = () => setSelectedImage(null);
@@ -65,10 +41,10 @@ export default function AchievementsSection() {
 
               {ms.image && (
                 <div className="timeline-media-container">
-                  <img 
-                    src={ms.image} 
-                    alt={ms.title} 
-                    loading="lazy" 
+                  <img
+                    src={ms.image}
+                    alt={ms.title}
+                    loading="lazy"
                     onClick={() => openLightbox(ms.image)}
                   />
                 </div>
@@ -80,14 +56,14 @@ export default function AchievementsSection() {
 
       <AnimatePresence>
         {selectedImage && (
-          <motion.div 
+          <motion.div
             className="lightbox-overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeLightbox}
           >
-            <motion.div 
+            <motion.div
               className="lightbox-content"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}

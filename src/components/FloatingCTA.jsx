@@ -2,15 +2,17 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import ThemeToggle from './ThemeToggle';
+
 export default function FloatingCTA() {
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Always show on sub-pages
+    // Always show on sub-pages (except Work page)
     if (location.pathname !== '/') {
-      setIsVisible(true);
+      setIsVisible(location.pathname !== '/work');
       return;
     }
 
@@ -66,27 +68,34 @@ export default function FloatingCTA() {
   };
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.a
-          href="#contact"
-          className="btn-floating"
-          onClick={handleContactClick}
-          initial={{ y: 100, opacity: 0, scale: 0.8 }}
-          animate={{ y: 0, opacity: 1, scale: 1 }}
-          exit={{ y: 100, opacity: 0, scale: 0.8 }}
-          transition={{ 
-            duration: 0.4, 
-            type: 'spring',
-            stiffness: 260,
-            damping: 20
-          }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Let's Talk
-        </motion.a>
-      )}
-    </AnimatePresence>
+    <>
+      <AnimatePresence>
+        {isVisible && (
+          <motion.a
+            href="#contact"
+            className="btn-floating hide-on-mobile"
+            onClick={handleContactClick}
+            initial={{ y: 100, opacity: 0, scale: 0.8 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: 100, opacity: 0, scale: 0.8 }}
+            transition={{ 
+              duration: 0.4, 
+              type: 'spring',
+              stiffness: 260,
+              damping: 20
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Let's Talk
+          </motion.a>
+        )}
+      </AnimatePresence>
+      
+      {/* Mobile: Persistent Floating Theme Toggle */}
+      <div className="show-on-mobile">
+        <ThemeToggle variant="floating" />
+      </div>
+    </>
   );
 }

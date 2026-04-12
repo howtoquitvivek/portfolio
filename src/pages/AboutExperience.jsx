@@ -15,49 +15,17 @@ import {
 } from 'lucide-react';
 import '../styles/AboutExperience.css';
 
-const stats = [
-  {
-    icon: <Rocket className="stat-icon-img" />,
-    label: '',
-    sublabel: 'WINS',
-    value: '4+ Hackathon',
-    color: '#FFB800'
-  },
-  {
-    icon: <Database className="stat-icon-img" />,
-    label: '',
-    sublabel: 'Multimedia & Dev',
-    value: '10+ Freelance',
-    color: '#50C878'
-  },
-  {
-    icon: <Atom className="stat-icon-img" />,
-    label: '',
-    sublabel: 'TECH DOMAINS',
-    value: 'ML & Web Dev',
-    color: '#8A70FF'
-  },
-  {
-    icon: <Beaker className="stat-icon-img" />,
-    label: '',
-    sublabel: 'PM & BACKEND',
-    value: 'Android App',
-    color: '#4A90E2'
-  }
-];
+import { config } from '../config';
 
-const chatMessages = [
-  "Android app developer Intern @Stock8",
-  "Freelance developer and video editor",
-  "Open source contributor and hackathon mentor",
-  "Working on real-world industrial projects 🚀"
-];
-
-const skills = [
-  { name: 'Web Dev', level: 85, color: '#8A70FF', icon: <Atom size={16} /> },
-  { name: 'AI/ML', level: 70, color: '#40E0D0', icon: <TrendingUp size={16} /> },
-  { name: 'Video Editing', level: 80, color: '#FFB84D', icon: <Rocket size={16} /> }
-];
+const { aboutExperience } = config;
+const { 
+  userName, 
+  stats, 
+  chatMessages, 
+  skills, 
+  products, 
+  navigation 
+} = aboutExperience;
 
 export default function AboutExperience() {
   return (
@@ -84,9 +52,8 @@ export default function AboutExperience() {
             <div className="scroll-content">
               {/* Greeting */}
               <div className="greeting-section">
-                <p className="greeting-text">Hello, <strong>Vivek</strong> here!!</p>
+                <p className="greeting-text">Hello, <strong>{userName}</strong> here!!</p>
                 <h1 className="main-title">Personal Stats</h1>
-                {/* <p className="sub-title">Overview of my experience</p> */}
               </div>
 
               {/* Stats Grid */}
@@ -100,7 +67,7 @@ export default function AboutExperience() {
                     transition={{ delay: 0.1 * i }}
                   >
                     <div className="stat-icon-wrapper" style={{ backgroundColor: `${stat.color}15` }}>
-                      {React.cloneElement(stat.icon, { color: stat.color })}
+                      {React.createElement(stat.icon, { color: stat.color, className: 'stat-icon-img' })}
                     </div>
                     <div className="stat-info">
                       <div className="stat-main">
@@ -140,7 +107,7 @@ export default function AboutExperience() {
                   {skills.map((skill, i) => (
                     <div key={skill.name} className="skill-item">
                       <div className="skill-header">
-                        <div className="skill-icon" style={{ color: skill.color }}>{skill.icon}</div>
+                        <div className="skill-icon" style={{ color: skill.color }}>{React.createElement(skill.icon, { size: 16 })}</div>
                         <span className="skill-name">{skill.name}</span>
                       </div>
                       <div className="progress-bg">
@@ -163,41 +130,35 @@ export default function AboutExperience() {
                   <h2 className="section-label">Recently Sold Products</h2>
                   <span className="view-all">View All</span>
                 </div>
-                <div className="product-card">
-                  <div className="product-img-placeholder"></div>
-                  <div className="product-info">
-                    <span className="product-name">Stock App UI Kit</span>
-                    <span className="product-price">$500</span>
-                  </div>
-                  <ChevronRight size={16} color="#ccc" />
+                <div className="product-list">
+                  {products.map((product, i) => (
+                    <div key={i} className="product-card">
+                      <div className="product-img-placeholder"></div>
+                      <div className="product-info">
+                        <span className="product-name">{product.name}</span>
+                        <span className="product-price">{product.price}</span>
+                      </div>
+                      <ChevronRight size={16} color="#ccc" />
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
 
             {/* Bottom Nav */}
             <div className="bottom-nav">
-              <div className="nav-item">
-                <TrendingUp size={20} />
-                <span>Performance</span>
-              </div>
-              <div className="nav-item">
-                <BarChart2 size={20} />
-                <span>Stock</span>
-              </div>
-              <div className="nav-item mic-wrap">
-                <div className="mic-button">
-                  <Mic size={24} color="#FFF" />
+              {navigation.map((nav, i) => (
+                <div key={i} className={`nav-item ${nav.isMain ? 'mic-wrap' : ''}`}>
+                  {nav.isMain ? (
+                    <div className="mic-button">
+                      {React.createElement(nav.icon, { size: 24, color: "#FFF" })}
+                    </div>
+                  ) : (
+                    React.createElement(nav.icon, { size: 20 })
+                  )}
+                  <span>{nav.label}</span>
                 </div>
-                <span>Bill</span>
-              </div>
-              <div className="nav-item">
-                <CreditCard size={20} />
-                <span>Payments</span>
-              </div>
-              <div className="nav-item">
-                <BookOpen size={20} />
-                <span>Khata</span>
-              </div>
+              ))}
             </div>
           </div>
         </div>

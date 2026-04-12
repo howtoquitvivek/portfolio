@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import '../styles/Hero.css';
 
+import { config } from '../config';
+
 export default function Hero() {
-  const line1 = ["I", "build", "scalable"];
-  const line2 = ["full-stack", "applications"];
+  const { hero } = config;
+  const { title, subtitle, description, ctaPrimary, ctaSecondary } = hero;
 
   const renderWord = (word, index, arrLength, delayOffset) => (
     <motion.span
@@ -16,7 +18,7 @@ export default function Hero() {
         delay: delayOffset + index * 0.1
       }}
       style={{ display: "inline-block", marginRight: index === arrLength - 1 ? "0" : "0.25em" }}
-      className={word === "scalable" ? "highlight" : ""}
+      className={title.highlight === word ? "highlight" : ""}
     >
       {word}
     </motion.span>
@@ -32,15 +34,15 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          VIVEK BARMAN — FULL-STACK DEVELOPER
+          {subtitle}
         </motion.p>
         
         <h1 className="hero-title">
           <div style={{ overflow: "hidden", display: "block" }}>
-            {line1.map((word, i) => renderWord(word, i, line1.length, 0.3))}
+            {title.line1.map((word, i) => renderWord(word, i, title.line1.length, 0.3))}
           </div>
           <div style={{ overflow: "hidden", display: "block", marginTop: "-0.1em" }}>
-            {line2.map((word, i) => renderWord(word, i, line2.length, 0.6))}
+            {title.line2.map((word, i) => renderWord(word, i, title.line2.length, 0.6))}
           </div>
         </h1>
 
@@ -50,7 +52,7 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.0 }}
         >
-          I’m a full-stack developer learning by building scalable applications and improving my backend and system design skills through real projects.
+          {description}
         </motion.p>
 
         <motion.div 
@@ -59,8 +61,8 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <a href="/resume.pdf" download="Vivek_Barman_Resume.pdf" className="btn btn-primary">Download Resume</a>
-          <a href="#demo" className="btn btn-secondary">See My Work</a>
+          <a href={ctaPrimary.href} download={ctaPrimary.download} className="btn btn-primary">{ctaPrimary.label}</a>
+          <a href={ctaSecondary.href} className="btn btn-secondary">{ctaSecondary.label}</a>
         </motion.div>
       </div>
     </section>

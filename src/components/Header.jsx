@@ -71,7 +71,14 @@ export default function Header() {
       </nav>
 
       <div className="header-cta">
-        <ThemeToggle />
+        <ThemeToggle className="hide-on-mobile" />
+        <a 
+          href="#contact" 
+          className="header-contact-btn show-on-mobile"
+          onClick={(e) => handleAnchorClick(e, '#contact')}
+        >
+          Let's Talk
+        </a>
       </div>
     </motion.header>
   );
