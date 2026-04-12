@@ -25,12 +25,12 @@ export const useThemeMode = () => {
 export const getThemedAsset = (section, type, item, isDark) => {
   const mode = isDark ? 'dark' : 'light';
   const theme = config.activeThemeName || 'pink';
-  return `/src/assets/${section}/${theme}/${mode}/${mode}-${type}-${section}-${item}.png`;
+  return `/assets/${section}/${theme}/${mode}/${mode}-${type}-${section}-${item}.png`;
 };
 
 /**
  * Resolves static asset paths that do NOT change with themes or modes.
  */
 export const getStaticAsset = (section, item) => {
-  return `/src/assets/${section}/${section}-${item}.png`;
+  return `/assets/${section}/${section}-${item}.png`;
 };
