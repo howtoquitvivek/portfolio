@@ -7,6 +7,11 @@ import educationImg from '../assets/about-education.png';
 import hobbiesImg from '../assets/about-hobbies.png';
 import locationImg from '../assets/about-location.png';
 
+import experienceMobileImg from '../assets/about-experience-mobile.png';
+import educationMobileImg from '../assets/about-education-mobile.png';
+import hobbiesMobileImg from '../assets/about-hobbies-mobile.png';
+import locationMobileImg from '../assets/about-location-mobile.png';
+
 const sections = [
   {
     id: 'experience',
@@ -15,6 +20,7 @@ const sections = [
     description:
       'I\'ve been building real-world projects for over a year — from full-stack web apps and REST APIs to machine learning pipelines. I focus on writing clean, scaleable and maintainable code.',
     image: experienceImg,
+    mobileImage: experienceMobileImg,
   },
   {
     id: 'education',
@@ -23,6 +29,7 @@ const sections = [
     description:
       'Currently pursuing my degree in B.Tech. CSE Data Science. I supplement academics with online courses, open-source contributions, and self-driven projects to stay ahead of the curve.',
     image: educationImg,
+    mobileImage: educationMobileImg,
   },
   {
     id: 'hobbies',
@@ -31,6 +38,7 @@ const sections = [
     description:
       'When I\'m not coding, you\'ll find me gaming, listening to music, reading tech blogs & books, or simply chilling.  I believe creativity outside of work fuels better engineering.',
     image: hobbiesImg,
+    mobileImage: hobbiesMobileImg,
   },
   {
     id: 'location',
@@ -39,6 +47,7 @@ const sections = [
     description:
       'I\'m based in India and open to remote opportunities worldwide. I thrive in async-first environments and love collaborating with teams across the globe.',
     image: locationImg,
+    mobileImage: locationMobileImg,
   },
 ];
 
@@ -87,7 +96,7 @@ export default function AboutSection() {
                       exit={{ height: 0, opacity: 0, marginTop: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <img src={section.image} alt={section.label} />
+                      <img src={section.mobileImage} alt={section.label} />
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -11,7 +11,6 @@ export default function Header() {
     { label: "Home", href: "#hero", isRoute: false },
     { label: "Projects", href: "#projects", isRoute: false },
     { label: "Achievements", href: "#achievements", isRoute: false },
-    { label: "About", href: "#about", isRoute: false },
     { label: "Work", href: "/work", isRoute: true }
   ];
 
