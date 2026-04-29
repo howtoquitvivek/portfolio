@@ -39,9 +39,10 @@ const projects = [
   }
 ];
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ hideHeader = false }) {
   return (
     <section className="section-container container" id="projects">
+      {!hideHeader && (
       <div className="section-header">
         <h2 className="section-title">Featured <span>Projects</span></h2>
         <p className="section-intro">
@@ -49,6 +50,7 @@ export default function ProjectsSection() {
           Focusing on functional design and technical depth.
         </p>
       </div>
+      )}
 
       <div className="projects-grid">
         {projects.map((proj, i) => (

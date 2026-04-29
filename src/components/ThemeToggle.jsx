@@ -12,8 +12,10 @@ export default function ThemeToggle({ variant = 'header', className = '', onTogg
     const root = document.documentElement;
     if (isDark) {
       root.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
     } else {
-      root.removeAttribute('data-theme');
+      root.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
     }
     
     // Sync other instances

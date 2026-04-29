@@ -18,6 +18,39 @@
   margin-bottom: 1.25rem;
 }
 
+.dynamic-title {
+  display: inline-block;
+  user-select: none;
+}
+
+.dynamic-title span {
+  cursor: pointer;
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.dynamic-title .active-text {
+  color: var(--color-text);
+  font-weight: 800;
+}
+
+.dynamic-title .inactive-text {
+  color: var(--color-text);
+  opacity: 0.4;
+  font-weight: 600;
+}
+
+.dynamic-title .inactive-text:hover {
+  opacity: 0.7;
+}
+
+.dynamic-title .slash-text {
+  color: var(--color-text);
+  font-weight: 800;
+  margin: 0 0.2em;
+  cursor: default;
+  pointer-events: none;
+}
+
 .work-subtitle {
   font-family: var(--font-body);
   font-size: 1.15rem;
@@ -204,5 +237,74 @@
 
   .work-card__features-list {
     grid-template-columns: 1fr;
+  }
+}
+
+/* ── Minimal Typography Redesign ── */
+.massive-stacked-title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 800;
+  line-height: 0.9;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  margin: 0;
+  color: var(--color-text);
+  transition: all 0.5s ease;
+}
+
+.massive-stacked-title:hover {
+  letter-spacing: 0.02em;
+}
+
+.outline-text {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-text);
+  opacity: 0.5;
+}
+
+.header-socials-minimal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+  margin-bottom: 0.5rem;
+}
+
+.header-socials-minimal a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text);
+  text-decoration: none;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.header-socials-minimal a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--color-text);
+  transition: width 0.3s ease;
+}
+
+.header-socials-minimal a:hover {
+  opacity: 1;
+}
+
+.header-socials-minimal a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .header-socials-minimal {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 1.5rem;
+    margin-top: 1rem;
   }
 }
