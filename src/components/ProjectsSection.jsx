@@ -41,7 +41,7 @@ const projects = [
 
 export default function ProjectsSection({ hideHeader = false }) {
   return (
-    <section className="section-container container" id="projects">
+    <section className={`section-container container ${hideHeader ? 'projects-standalone' : ''}`} id={hideHeader ? undefined : 'projects'}>
       {!hideHeader && (
       <div className="section-header">
         <h2 className="section-title">Featured <span>Projects</span></h2>

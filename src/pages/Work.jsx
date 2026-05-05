@@ -6,6 +6,14 @@ import '../styles/Work.css';
 import { config } from '../config';
 import { getStaticAsset } from '../utils/themeUtils';
 import ProjectsSection from '../components/ProjectsSection';
+import { 
+  Code, 
+  Cpu, 
+  GitBranch, 
+  Briefcase, 
+  Smartphone,
+  ArrowUpRight 
+} from 'lucide-react';
 
 const { work } = config;
 const { subtitle: workSubtitle, tabs: workTabs } = work;
@@ -13,7 +21,7 @@ const { subtitle: workSubtitle, tabs: workTabs } = work;
 export default function Work() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(0);
-  
+
   // Initialize mode from URL query parameter
   const [mainMode, setMainMode] = useState(() => {
     const params = new URLSearchParams(location.search);
@@ -39,13 +47,16 @@ export default function Work() {
   return (
     <div className="work-page">
       {/* ── Hero heading (Dynamic Tab Switcher) ── */}
-      <motion.div layout className="dynamic-title-container" style={{ marginBottom: '1.25rem' }}>
+      <motion.div layout className="dynamic-title-container">
         <h1 className="work-title dynamic-title" style={{ marginBottom: 0, display: 'flex', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
-          <motion.span 
-            layout 
-            className={mainMode === 'work' ? "active-text" : "inactive-text"} 
+          <motion.span
+            layout
+            className={mainMode === 'work' ? "active-text" : "inactive-text inactive-left"}
             onClick={() => setMainMode('work')}
-            animate={{ color: 'var(--color-text)', opacity: mainMode === 'work' ? 1 : 0.4 }}
+            animate={{ 
+              color: mainMode === 'work' ? 'var(--color-text)' : 'transparent',
+              opacity: 1 
+            }}
             transition={{ duration: 0.4 }}
             style={{ cursor: 'pointer', marginRight: mainMode === 'work' ? '0.25em' : 0 }}
           >
@@ -54,10 +65,10 @@ export default function Work() {
 
           <AnimatePresence mode="popLayout" initial={false}>
             {mainMode === 'with-me' && (
-              <motion.span 
+              <motion.span
                 layout
                 initial={{ opacity: 0, scale: 0, width: 0 }}
-                animate={{ opacity: 0.4, scale: 1, width: 'auto' }}
+                animate={{ opacity: 1, scale: 1, width: 'auto' }}
                 exit={{ opacity: 0, scale: 0, width: 0 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 className="slash-text inactive-text"
@@ -68,8 +79,8 @@ export default function Work() {
           </AnimatePresence>
 
           <motion.span layout style={{ display: 'inline-flex', alignItems: 'center', marginRight: mainMode === 'with-me' ? '0.25em' : 0 }}>
-            <motion.span 
-              className="active-text" 
+            <motion.span
+              className="active-text"
               style={{ cursor: 'pointer' }}
               onClick={() => setMainMode(mainMode === 'work' ? 'with-me' : 'work')}
             >
@@ -77,7 +88,7 @@ export default function Work() {
             </motion.span>
             <AnimatePresence mode="popLayout" initial={false}>
               {mainMode === 'work' && (
-                <motion.span 
+                <motion.span
                   layout
                   initial={{ opacity: 0, scale: 0, width: 0 }}
                   animate={{ opacity: 1, scale: 1, width: 'auto' }}
@@ -93,10 +104,10 @@ export default function Work() {
 
           <AnimatePresence mode="popLayout" initial={false}>
             {mainMode === 'work' && (
-              <motion.span 
+              <motion.span
                 layout
                 initial={{ opacity: 0, scale: 0, width: 0 }}
-                animate={{ opacity: 0.4, scale: 1, width: 'auto' }}
+                animate={{ opacity: 1, scale: 1, width: 'auto' }}
                 exit={{ opacity: 0, scale: 0, width: 0 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 className="slash-text inactive-text"
@@ -107,10 +118,13 @@ export default function Work() {
           </AnimatePresence>
 
           <motion.span layout style={{ display: 'inline-flex', alignItems: 'center' }}>
-            <motion.span 
-              className={mainMode === 'with-me' ? "active-text" : "inactive-text"} 
+            <motion.span
+              className={mainMode === 'with-me' ? "active-text" : "inactive-text inactive-right"}
               onClick={() => setMainMode('with-me')}
-              animate={{ color: 'var(--color-text)', opacity: mainMode === 'with-me' ? 1 : 0.4 }}
+              animate={{ 
+                color: mainMode === 'with-me' ? 'var(--color-text)' : 'transparent',
+                opacity: 1 
+              }}
               transition={{ duration: 0.4 }}
               style={{ cursor: 'pointer' }}
             >
@@ -118,7 +132,7 @@ export default function Work() {
             </motion.span>
             <AnimatePresence mode="popLayout" initial={false}>
               {mainMode === 'with-me' && (
-                <motion.span 
+                <motion.span
                   layout
                   initial={{ opacity: 0, scale: 0, width: 0 }}
                   animate={{ opacity: 1, scale: 1, width: 'auto' }}
@@ -133,9 +147,7 @@ export default function Work() {
           </motion.span>
         </h1>
       </motion.div>
-      <p className="work-subtitle">
-        {workSubtitle}
-      </p>
+
 
       <AnimatePresence mode="wait" initial={false}>
         {mainMode === 'with-me' ? (
@@ -147,31 +159,48 @@ export default function Work() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* ── Pill tabs ── */}
-            <div className="work-tabs" role="tablist">
-              {tabs.map((tab, i) => (
-                <button
-                  key={tab.id}
-                  role="tab"
-                  aria-selected={i === activeTab}
-                  className={`work-tab ${i === activeTab ? 'work-tab--active' : ''}`}
-                  onClick={() => setActiveTab(i)}
-                >
-                  {i === activeTab && (
-                    <motion.div
-                      layoutId="active-pill"
-                      className="work-tab-pill"
-                      transition={{ type: "spring", stiffness: 500, damping: 35 }}
-                    />
-                  )}
-                  <span className="work-tab-label">{tab.label}</span>
-                </button>
-              ))}
+            <div className="navbar" role="tablist">
+              {config.work.tabs.map((tab, index) => {
+                const iconMap = {
+                  webdev: Code,
+                  ml: Cpu,
+                  android: Smartphone,
+                  opensource: GitBranch,
+                  hireme: Briefcase
+                };
+                const IconComponent = iconMap[tab.id] || Code;
+
+                return (
+                  <div
+                    key={tab.id}
+                    className={`navbar__item ${activeTab === index ? 'is-active' : ''}`}
+                    onClick={() => setActiveTab(index)}
+                    role="tab"
+                    aria-selected={activeTab === index}
+                  >
+                    <span className="navbar__icon">
+                      <IconComponent size={24} strokeWidth={2.5} />
+                    </span>
+                    <span className="navbar__label">{tab.label}</span>
+                  </div>
+                );
+              })}
             </div>
 
             {/* ── Content card ── */}
             <div className="work-card">
               <div className="work-card__body">
-                <h2 className="work-card__heading">{current.heading}</h2>
+                <a 
+                  href={current.ctaHref} 
+                  className="work-card__link-heading"
+                  target={current.ctaHref.startsWith('http') ? '_blank' : undefined}
+                  rel={current.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
+                >
+                  <h2 className="work-card__heading">
+                    {current.heading}
+                    <ArrowUpRight size={26} className="heading-arrow" />
+                  </h2>
+                </a>
                 <p className="work-card__desc">{current.description}</p>
 
                 <div className="work-card__features">
@@ -185,15 +214,6 @@ export default function Work() {
                     ))}
                   </ul>
                 </div>
-
-                <a
-                  href={current.ctaHref}
-                  className="btn btn-secondary work-card__cta"
-                  target={current.ctaHref.startsWith('http') ? '_blank' : undefined}
-                  rel={current.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}
-                >
-                  {current.cta}
-                </a>
               </div>
 
               <div className="work-card__image">

@@ -5,6 +5,10 @@
   margin-top: 4rem;
 }
 
+.projects-standalone {
+  padding-top: 0 !important;
+}
+
 .project-card {
   position: relative;
   background: rgba(255, 255, 255, 0.02);

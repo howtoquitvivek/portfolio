@@ -1,8 +1,8 @@
-import { 
-  Rocket, 
-  Database, 
-  Atom, 
-  Beaker, 
+import {
+  Rocket,
+  Database,
+  Atom,
+  Beaker,
   TrendingUp,
   BarChart2,
   Mic,
@@ -134,53 +134,53 @@ export const config = {
     tabs: [
       {
         id: 'webdev',
-        label: 'Web Development',
-        heading: 'Full-stack web applications',
-        description: 'Building modern, responsive web applications from concept to deployment. I work across the entire stack — React frontends, Node/Express backends, databases, and cloud deployment.',
-        features: ['React & Next.js SPAs', 'REST & GraphQL APIs', 'Database design & optimization', 'CI/CD & cloud deployment'],
+        label: 'Websites',
+        heading: 'Website Development',
+        description: 'Building secure, data-driven applications with MERN, Firebase, and FastAPI. Specialist in, Businness portfolios, robust auth systems and complex interactive dashboards.',
+        features: ['MERN & Firebase Integration', 'Flask/FastAPI Backends', 'Secure Auth & Dashboards', 'End-to-End Scalability'],
         cta: 'Start a project',
         ctaHref: `mailto:${EMAIL}?subject=Web Development Project`,
-        item: 'webdev' // used for asset resolution
+        item: 'webdev'
       },
       {
         id: 'ml',
-        label: 'Machine Learning',
-        heading: 'Intelligent solutions with ML',
-        description: 'Applying machine learning to solve real-world problems — from data preprocessing and model training to evaluation and deployment of predictive systems.',
-        features: ['Data analysis & visualization', 'Model training & evaluation', 'NLP & computer vision', 'ML pipeline development'],
-        cta: 'Discuss an ML project',
-        ctaHref: `mailto:${EMAIL}?subject=Machine Learning Project`,
+        label: 'AI & ML',
+        heading: 'Data-Driven Problem Solving',
+        description: 'From text to image dataset analysis. I build predictive models/implement exising models and create synthetic datasets using Scikit-learn and HuggingFace.',
+        features: ['Scikit-learn & HuggingFace', 'Anomaly Detection Models', 'Geospatial Data Analysis', 'Synthetic Dataset Design'],
+        cta: 'Discuss an AI project',
+        ctaHref: `mailto:${EMAIL}?subject=AI/ML Project`,
         item: 'ml'
       },
       {
+        id: 'android',
+        label: 'Android',
+        heading: 'Android Mobile Apps',
+        description: 'Developing performant mobile solutions with Expo and React Native. Focused on fintech-grade UI/UX and rapid prototyping.',
+        features: ['Expo & React Native', 'Fintech UI/UX Design', 'Native Feature Integration', 'Rapid Prototyping'],
+        cta: 'Build an app together',
+        ctaHref: `mailto:${EMAIL}?subject=Android App Project`,
+        item: 'android'
+      },
+      {
         id: 'opensource',
-        label: 'Open Source',
-        heading: 'Contributing to open source',
-        description: "I actively contribute to open-source projects and am always looking for impactful repositories to collaborate on. Let's build something the community can use.",
-        features: ['Bug fixes & feature PRs', 'Documentation improvements', 'Code reviews & mentoring', 'Community-driven projects'],
+        label: 'Collaborate',
+        heading: 'Open Source Contributor',
+        description: 'Active contributor to the MetaBrainz ecosystem (ListenBrainz). I focus on core component building and codebase stability while never ignoring clear written explanations of my code.',
+        features: ['ListenBrainz Contributor', 'Component Development', 'Bug Fixing & Refactoring', 'Collaborative Architecture'],
         cta: 'View my GitHub',
         ctaHref: 'https://github.com/howtoquitvivek',
         item: 'opensource'
       },
       {
         id: 'hireme',
-        label: 'Hire Me',
-        heading: 'Available for opportunities',
-        description: "I'm open to internships, freelance work, and full-time roles where I can grow and deliver value. I bring strong fundamentals, fast learning, and genuine passion.",
-        features: ['Internships & co-ops', 'Freelance contracts', 'Full-time positions', 'Remote or on-site'],
+        label: 'Freelance',
+        heading: 'Business & Custom Solutions',
+        description: 'High-velocity delivery for business portfolios and custom projects. 5-day turnaround with full end-to-end management and support.',
+        features: ['5-Day Rapid Delivery', 'Post-Launch Support', 'Professional Business Portfolios', 'End-to-End Project Management'],
         cta: 'Get in touch',
-        ctaHref: `mailto:${EMAIL}?subject=Job Opportunity`,
+        ctaHref: `mailto:${EMAIL}?subject=Freelance Opportunity`,
         item: 'hireme'
-      },
-      {
-        id: 'android',
-        label: 'Android Apps',
-        heading: 'Native Android development',
-        description: 'Crafting performant Android applications with Kotlin and Jetpack Compose. From idea through Play Store publishing — clean architecture, smooth UX.',
-        features: ['Kotlin & Jetpack Compose', 'Material Design 3', 'Room, Retrofit & Hilt', 'Play Store deployment'],
-        cta: 'Build an app together',
-        ctaHref: `mailto:${EMAIL}?subject=Android App Project`,
-        item: 'android'
       }
     ]
   },
