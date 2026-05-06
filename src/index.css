@@ -8,6 +8,7 @@
   --color-bg: var(--config-dark-bg, #120A17);
   --color-text: var(--config-dark-text, #FEFBFA);
   --color-border: var(--config-dark-border, rgba(254, 251, 250, 0.1));
+  --color-inactive-blend: var(--config-dark-inactiveBlend, #3c3742);
 
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Inter', sans-serif;
@@ -26,6 +27,7 @@
   --color-bg: var(--config-light-bg, #FEFBFA);
   --color-text: var(--config-light-text, #2C1338);
   --color-border: var(--config-light-border, rgba(44, 19, 56, 0.1));
+  --color-inactive-blend: var(--config-light-inactiveBlend, #eaeaea);
 }
 
 *,

@@ -63,7 +63,8 @@ export const config = {
       accent: '#E57CD8',
       bg: '#FEFBFA',
       text: '#2C1338',
-      border: 'rgba(44, 19, 56, 0.1)'
+      border: 'rgba(44, 19, 56, 0.1)',
+      inactiveBlend: '#FEFBFA'
     },
     dark: {
       primary: '#E57CD8',
@@ -71,7 +72,8 @@ export const config = {
       accent: '#E57CD8',
       bg: '#120A17',
       text: '#FEFBFA',
-      border: 'rgba(254, 251, 250, 0.1)'
+      border: 'rgba(254, 251, 250, 0.1)',
+      inactiveBlend: '#3c3742'
     }
   },
 

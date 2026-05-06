@@ -6,13 +6,13 @@ import '../styles/Work.css';
 import { config } from '../config';
 import { getStaticAsset } from '../utils/themeUtils';
 import ProjectsSection from '../components/ProjectsSection';
-import { 
-  Code, 
-  Cpu, 
-  GitBranch, 
-  Briefcase, 
+import {
+  Code,
+  Cpu,
+  GitBranch,
+  Briefcase,
   Smartphone,
-  ArrowUpRight 
+  ArrowUpRight
 } from 'lucide-react';
 
 const { work } = config;
@@ -53,9 +53,9 @@ export default function Work() {
             layout
             className={mainMode === 'work' ? "active-text" : "inactive-text inactive-left"}
             onClick={() => setMainMode('work')}
-            animate={{ 
+            animate={{
               color: mainMode === 'work' ? 'var(--color-text)' : 'transparent',
-              opacity: 1 
+              opacity: 1
             }}
             transition={{ duration: 0.4 }}
             style={{ cursor: 'pointer', marginRight: mainMode === 'work' ? '0.25em' : 0 }}
@@ -121,9 +121,9 @@ export default function Work() {
             <motion.span
               className={mainMode === 'with-me' ? "active-text" : "inactive-text inactive-right"}
               onClick={() => setMainMode('with-me')}
-              animate={{ 
+              animate={{
                 color: mainMode === 'with-me' ? 'var(--color-text)' : 'transparent',
-                opacity: 1 
+                opacity: 1
               }}
               transition={{ duration: 0.4 }}
               style={{ cursor: 'pointer' }}
@@ -159,7 +159,31 @@ export default function Work() {
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* ── Pill tabs ── */}
-            <div className="navbar" role="tablist">
+            <div className="navbar" role="tablist" style={{ position: 'relative' }}>
+              {/* Primary glow blob — left of icon center */}
+              <motion.div
+                layoutId="active-pill-primary"
+                className="navbar__active-bg navbar__active-bg--track"
+                transition={{ type: 'spring', stiffness: 330, damping: 31 }}
+                style={{
+                  position: 'absolute',
+                  left: `calc(${activeTab} * (102% / ${config.work.tabs.length}) + (80% / ${config.work.tabs.length} / 2) - 20px)`,
+                  top: '20%',
+                  transform: 'translateY(-50%)',
+                }}
+              />
+              {/* Secondary blob — slightly right of primary, still on the left side */}
+              <motion.div
+                layoutId="active-pill-secondary"
+                className="navbar__active-bg navbar__active-bg--track navbar__active-bg--secondary"
+                transition={{ type: 'spring', stiffness: 320, damping: 34 }}
+                style={{
+                  position: 'absolute',
+                  left: `calc(${activeTab} * (88% / ${config.work.tabs.length}) + (100% / ${config.work.tabs.length} / 2) + 5px)`,
+                  top: 'calc(50% + 6px)',
+                  transform: 'translateY(-50%)',
+                }}
+              />
               {config.work.tabs.map((tab, index) => {
                 const iconMap = {
                   webdev: Code,
@@ -190,8 +214,8 @@ export default function Work() {
             {/* ── Content card ── */}
             <div className="work-card">
               <div className="work-card__body">
-                <a 
-                  href={current.ctaHref} 
+                <a
+                  href={current.ctaHref}
                   className="work-card__link-heading"
                   target={current.ctaHref.startsWith('http') ? '_blank' : undefined}
                   rel={current.ctaHref.startsWith('http') ? 'noopener noreferrer' : undefined}

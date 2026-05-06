@@ -1,8 +1,7 @@
 /* ── Work Page ── */
 .work-page {
-  /* --work-inactive-blend: var(--color-bg); */
-  --work-inactive-blend: #3c3742;
-  --work-inactive-grey: color-mix(in srgb, var(--color-text), transparent 60%);
+  --work-inactive-blend: var(--color-inactive-blend);
+  --work-inactive-grey: color-mix(in srgb, var(--color-text), transparent 55%);
 
   padding: 10rem 2rem 8rem;
   max-width: 1000px;
@@ -111,14 +110,28 @@
   align-items: center;
   justify-content: space-evenly;
   padding: 12px 20px;
-  background: rgba(255, 255, 255, 0.01);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 20px;
   position: relative;
   margin-top: 0 !important;
   margin-bottom: 2.5rem;
   width: 100%;
+  background: transparent;
+}
+
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+[data-theme="light"] .navbar::before {
+  background: rgba(44, 19, 56, 0.03);
+  border: 1px solid var(--color-border);
 }
 
 
@@ -134,34 +147,67 @@
   transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   user-select: none;
   color: var(--color-text);
-  opacity: 0.5;
+  opacity: 1;
+}
+
+[data-theme="light"] .navbar__item {
+  opacity: 1;
 }
 
 .navbar__item.is-active,
 .navbar__item:hover {
   color: var(--color-primary);
-  opacity: 1;
 }
 
-.navbar__item::before {
-  content: "";
+.navbar__active-bg {
   position: absolute;
   width: 40px;
   height: 40px;
   background: var(--color-primary);
   filter: blur(30px);
   border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.4s ease;
   z-index: 0;
   pointer-events: none;
+  opacity: 0.3;
+}
+
+/* Always-mounted blob: position is driven by inline style / framer layout */
+.navbar__active-bg--track {
+  /* No remounting = no opacity flash */
+  opacity: 0.3 !important;
+}
+
+/* Secondary blob — violet bleed light scatter */
+.navbar__active-bg--secondary {
+  width: 50px !important;
+  height: 50px !important;
+  background: #ff80ce !important;
+  filter: blur(28px) !important;
+  opacity: 0.25 !important;
+}
+
+[data-theme="light"] .navbar__active-bg {
+  opacity: 0.12;
+}
+
+[data-theme="light"] .navbar__active-bg--track {
+  background: #b968ff !important;
+  opacity: 0.15 !important;
+}
+
+[data-theme="light"] .navbar__active-bg--secondary {
+  background: #ff0de3 !important;
+  opacity: 0.06 !important;
+  filter: blur(22px) !important;
 }
 
 
+.navbar__item:hover:not(.is-active)::before {
+  opacity: 0.3;
+}
 
-.navbar__item:hover::before,
-.navbar__item.is-active::before {
-  opacity: 0.4;
+[data-theme="light"] .navbar__item:hover:not(.is-active)::before {
+  opacity: 0.15;
 }
 
 .navbar__item:hover .navbar__icon,
@@ -177,6 +223,11 @@
   position: relative;
   z-index: 2;
   color: currentColor;
+  opacity: 0.5;
+}
+
+[data-theme="light"] .navbar__icon {
+  opacity: 0.7;
 }
 
 .navbar__label {
@@ -192,9 +243,19 @@
   z-index: 3;
 }
 
+[data-theme="light"] .navbar__label {
+  opacity: 0.65;
+}
+
+.navbar__item:hover .navbar__icon,
 .navbar__item:hover .navbar__label,
+.navbar__item.is-active .navbar__icon,
 .navbar__item.is-active .navbar__label {
   opacity: 1;
+}
+
+.navbar__item:hover .navbar__label,
+.navbar__item.is-active .navbar__label {
   color: var(--color-primary);
 }
 
@@ -287,7 +348,7 @@
 
 /* ── Features box ── */
 .work-card__features {
-  background: rgba(229, 124, 216, 0.06);
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
   border-radius: var(--radius-base);
   padding: 1.5rem 1.75rem;
   height: 180px;
@@ -307,6 +368,10 @@
   color: var(--color-text);
   opacity: 0.5;
   margin-bottom: 1rem;
+}
+
+[data-theme="light"] .work-card__features-label {
+  opacity: 0.7;
 }
 
 .work-card__features-list {
