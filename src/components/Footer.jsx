@@ -35,14 +35,9 @@ export default function Footer() {
         <div className="footer-content">
           {location.pathname === '/' && (
             <>
-              <motion.h2 
-                className="footer-title"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-              >
-                Ready to build something <br /> extraordinary?
-              </motion.h2>
+              <h2 className="footer-title">
+                Ready to build something extraordinary?
+              </h2>
 
               <div className="footer-cta">
                 <a 
@@ -68,12 +63,12 @@ export default function Footer() {
             <path id="gentle-wave" d="M-160 44c30 0 58-10 88-10s 58 10 88 10 58-10 88-10 58 10 88 10 v44h-352z" />
           </defs>
           <g className="parallax">
-            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(229, 124, 216, 0.1)" />
-            <use xlinkHref="#gentle-wave" x="48" y="1" fill="rgba(229, 124, 216, 0.2)" />
-            <use xlinkHref="#gentle-wave" x="48" y="2" fill="rgba(229, 124, 216, 0.3)" />
-            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(229, 124, 216, 0.4)" />
-            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(229, 124, 216, 0.5)" />
-            <use xlinkHref="#gentle-wave" x="48" y="7" fill="var(--color-primary)" />
+            <use xlinkHref="#gentle-wave" x="48" y="0" fill="rgba(255, 255, 255, 0.015)" />
+            <use xlinkHref="#gentle-wave" x="48" y="1" fill="rgba(255, 255, 255, 0.03)" />
+            <use xlinkHref="#gentle-wave" x="48" y="2" fill="rgba(255, 255, 255, 0.05)" />
+            <use xlinkHref="#gentle-wave" x="48" y="3" fill="rgba(255, 255, 255, 0.07)" />
+            <use xlinkHref="#gentle-wave" x="48" y="5" fill="rgba(255, 255, 255, 0.1)" />
+            <use xlinkHref="#gentle-wave" x="48" y="7" fill="var(--color-inactive-blend, #11131B)" />
           </g>
         </svg>
       </div>

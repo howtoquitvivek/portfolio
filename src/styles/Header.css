@@ -5,31 +5,34 @@
   width: 100%;
   padding: 1.25rem 4rem 1.25rem 2rem;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Perfect 3-column split for centering */
+  grid-template-columns: repeat(3, 1fr);
+  /* Perfect 3-column split for centering */
   align-items: center;
   z-index: 100;
-  
+
   /* Refined Glass UI with Mobile Safari Fixes */
-  background: var(--color-bg); /* Opaque fallback */
+  background: var(--color-bg);
+  /* Opaque fallback */
   background: color-mix(in srgb, var(--color-bg) 65%, transparent);
-  -webkit-backdrop-filter: blur(12px) saturate(180%); 
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
   backdrop-filter: blur(12px) saturate(180%);
-  
+
   /* Force hardware acceleration for mobile blur rendering */
   will-change: backdrop-filter, -webkit-backdrop-filter;
-  transform: translateZ(0); 
-  
+  transform: translateZ(0);
+
   border-bottom: 1px solid var(--color-border);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
-  
+
   color: var(--color-text);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-nav {
   display: flex;
   gap: 2rem;
-  justify-self: center; /* Center the nav in its grid cell */
+  justify-self: center;
+  /* Center the nav in its grid cell */
 }
 
 .header-logo {
@@ -114,6 +117,7 @@
     display: flex;
     justify-content: space-between;
   }
+
   .header-nav {
     display: none;
   }

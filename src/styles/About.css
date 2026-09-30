@@ -39,10 +39,24 @@
   cursor: pointer;
   padding: 0.75rem 0;
   position: relative;
-  transition: all 0.3s ease;
   padding-left: 2rem;
   width: 100%;
   outline: none;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), 
+              -webkit-mask-image 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              mask-image 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-tab-vertical--active {
+  opacity: 1 !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+.about-tab-vertical--inactive:hover {
+  opacity: 0.9 !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
 }
 
 .about-tab-indicator {
@@ -51,7 +65,9 @@
   top: 10%;
   bottom: 10%;
   width: 3px;
-  background-color: var(--color-primary);
+  background-color: var(--color-primary, #FFFFFF);
+  border-radius: 3px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
   z-index: 1;
 }
 
@@ -63,29 +79,29 @@
   font-family: var(--font-heading);
   font-size: 1.6rem;
   font-weight: 700;
-  color: var(--color-text);
+  color: #D4D4D8;
   margin-bottom: 0.75rem;
-  transition: color 0.3s ease;
-  opacity: 0.6;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  letter-spacing: -0.03em;
 }
 
 .about-tab-vertical--active .about-tab-vertical__title {
-  opacity: 1;
-  color: var(--color-primary);
+  color: #FFFFFF !important;
+  text-shadow: 0 0 24px rgba(255, 255, 255, 0.25);
 }
 
 .about-tab-vertical__description {
   font-family: var(--font-body);
   font-size: 1rem;
-  line-height: 1.6;
-  color: var(--color-text);
-  opacity: 0.6;
+  line-height: 1.65;
+  color: #A1A1AA;
   margin-top: 0.5rem;
-  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 
 .about-tab-vertical--active .about-tab-vertical__description {
-  opacity: 1;
+  color: #E4E4E7 !important;
 }
 
 .about-tab-mobile-image {
@@ -100,6 +116,8 @@
   border-radius: 0;
   object-fit: cover;
   border: none;
+  filter: brightness(0.72) contrast(1.12) saturate(0.7) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  transition: filter 0.3s ease;
 }
 
 /* Right Content: Image Display */
@@ -136,6 +154,13 @@
   object-fit: contain;
   object-position: left center; /* Keep the left/important part of the image in view */
   display: block;
+  filter: brightness(0.72) contrast(1.12) saturate(0.7) drop-shadow(0 15px 40px rgba(0, 0, 0, 0.6));
+  transition: filter 0.3s ease;
+}
+
+[data-theme="light"] .about-image-display img,
+[data-theme="light"] .about-tab-mobile-image img {
+  filter: brightness(0.95) contrast(1.02) saturate(0.85);
 }
 
 /* ── Responsive ── */

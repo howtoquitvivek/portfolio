@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import '../styles/Hero.css';
 
@@ -6,7 +5,7 @@ import { config } from '../config';
 
 export default function Hero() {
   const { hero } = config;
-  const { title, subtitle, description, ctaPrimary, ctaSecondary } = hero;
+  const { title, subtitle, description, ctaPrimary } = hero;
 
   const renderWord = (word, index, arrLength, delayOffset) => (
     <motion.span
@@ -62,8 +61,9 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.4 }}
         >
-          <a href={ctaPrimary.href} download={ctaPrimary.download} className="btn btn-primary">{ctaPrimary.label}</a>
-          <Link to={ctaSecondary.href} className="btn btn-secondary">{ctaSecondary.label}</Link>
+          <a href={ctaPrimary.href} download={ctaPrimary.download} className="hero-download-btn">
+            {ctaPrimary.label}
+          </a>
         </motion.div>
       </div>
     </section>

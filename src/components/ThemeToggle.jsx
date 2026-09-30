@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { ThemeToggleButton4 } from '@/components/v1/skiper4';
 
 export default function ThemeToggle({ variant = 'header', className = '', onToggle }) {
   const [isDark, setIsDark] = useState(() => {
@@ -33,15 +33,13 @@ export default function ThemeToggle({ variant = 'header', className = '', onTogg
   const buttonClass = variant === 'floating' ? `btn-floating circle ${className}` : `theme-switch ${className}`;
 
   return (
-    <button 
-      className={buttonClass} 
+    <ThemeToggleButton4
+      className={buttonClass}
+      isDark={isDark}
       onClick={() => {
         setIsDark(!isDark);
         if (onToggle) onToggle();
       }}
-      aria-label="Toggle theme"
-    >
-      {isDark ? <Sun size={24} /> : <Moon size={24} />}
-    </button>
+    />
   );
 }

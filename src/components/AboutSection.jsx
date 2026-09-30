@@ -45,6 +45,53 @@ export default function AboutSection() {
 
   const current = sections[activeIndex];
 
+  const getTabClassAndStyle = (i) => {
+    if (i === activeIndex) {
+      return {
+        className: 'about-tab-vertical about-tab-vertical--active',
+        style: {
+          opacity: 1,
+          WebkitMaskImage: 'none',
+          maskImage: 'none',
+        },
+      };
+    }
+
+    const dist = Math.abs(i - activeIndex);
+    const isBelow = i > activeIndex;
+
+    let startAlpha = 0.95;
+    let endAlpha = 0.6;
+    let baseOpacity = 0.85;
+
+    if (dist === 1) {
+      startAlpha = 0.95;
+      endAlpha = 0.55;
+      baseOpacity = 0.85;
+    } else if (dist === 2) {
+      startAlpha = 0.85;
+      endAlpha = 0.42;
+      baseOpacity = 0.72;
+    } else {
+      startAlpha = 0.75;
+      endAlpha = 0.35;
+      baseOpacity = 0.62;
+    }
+
+    const maskGrad = isBelow
+      ? `linear-gradient(180deg, rgba(0,0,0,${startAlpha}) 0%, rgba(0,0,0,${endAlpha}) 100%)`
+      : `linear-gradient(0deg, rgba(0,0,0,${startAlpha}) 0%, rgba(0,0,0,${endAlpha}) 100%)`;
+
+    return {
+      className: `about-tab-vertical about-tab-vertical--inactive about-tab-vertical--dist-${dist}`,
+      style: {
+        opacity: baseOpacity,
+        WebkitMaskImage: maskGrad,
+        maskImage: maskGrad,
+      },
+    };
+  };
+
   return (
     <section className="section-container" id="about">
       <div className="container">
@@ -60,39 +107,46 @@ export default function AboutSection() {
       <div className="about-layout">
         {/* Left Options Segment */}
         <div className="about-tabs-vertical">
-          {sections.map((section, i) => (
-            <button
-              key={section.id}
-              className={`about-tab-vertical ${i === activeIndex ? 'about-tab-vertical--active' : ''}`}
-              onClick={() => setActiveIndex(i)}
-            >
-              {i === activeIndex && (
-                <motion.div
-                  layoutId="about-indicator"
-                  className="about-tab-indicator"
-                  transition={{ type: "spring", stiffness: 500, damping: 40 }}
-                />
-              )}
-              <div className="about-tab-vertical__text">
-                <h3 className="about-tab-vertical__title">{section.title}</h3>
-                <p className="about-tab-vertical__description">{section.description}</p>
-                {/* Mobile Image (Accordion Style) */}
-                <AnimatePresence>
-                  {i === activeIndex && (
-                    <motion.div 
-                      className="about-tab-mobile-image"
-                      initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                      animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
-                      exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    >
-                      <img src={section.mobileImage} alt={section.label} />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            </button>
-          ))}
+          {sections.map((section, i) => {
+            const { className, style } = getTabClassAndStyle(i);
+            const isActive = i === activeIndex;
+
+            return (
+              <button
+                key={section.id}
+                type="button"
+                className={className}
+                style={style}
+                onClick={() => setActiveIndex(i)}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="about-indicator"
+                    className="about-tab-indicator"
+                    transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                  />
+                )}
+                <div className="about-tab-vertical__text">
+                  <h3 className="about-tab-vertical__title">{section.title}</h3>
+                  <p className="about-tab-vertical__description">{section.description}</p>
+                  {/* Mobile Image (Accordion Style) */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.div 
+                        className="about-tab-mobile-image"
+                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                        animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                        exit={{ height: 0, opacity: 0, marginTop: 0 }}
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                      >
+                        <img src={section.mobileImage} alt={section.label} />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* Right Image Display Segment */}

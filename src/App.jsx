@@ -34,9 +34,11 @@ function App() {
   return (
     <Router>
       <ThemeConfigurator />
-      <SmoothScroll>
-        <AppContent />
-      </SmoothScroll>
+      <main className="relative" style={{ height: '100%', width: '100%' }}>
+        <SmoothScroll>
+          <AppContent />
+        </SmoothScroll>
+      </main>
     </Router>
   );
 }

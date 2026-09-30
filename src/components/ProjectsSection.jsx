@@ -1,5 +1,5 @@
-import { motion } from 'framer-motion';
 import '../styles/Projects.css';
+import { FolderProjects } from './v1/FolderProjects';
 
 const projects = [
   {
@@ -52,58 +52,7 @@ export default function ProjectsSection({ hideHeader = false }) {
       </div>
       )}
 
-      <div className="projects-grid">
-        {projects.map((proj, i) => (
-          <motion.div
-            className="project-card clickable-card"
-            key={i}
-            whileHover={{ y: -5 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              const url = proj.live || proj.source;
-              if (url) window.open(url, '_blank');
-            }}
-          >
-            <h3>{proj.title}</h3>
-            <p>{proj.desc}</p>
-
-            <div className="project-tags">
-              {proj.tags.map(tag => (
-                <span key={tag} className="project-tag">{tag}</span>
-              ))}
-            </div>
-
-            <div className="project-links">
-              {proj.live && (
-                <a
-                  href={proj.live}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="primary-link"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  See Live
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </a>
-              )}
-              {proj.source && (
-                <a
-                  href={proj.source}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="secondary-link"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  Source Code
-                </a>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
+      <FolderProjects projects={projects} />
     </section>
   );
 }

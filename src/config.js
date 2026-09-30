@@ -51,29 +51,29 @@ export const config = {
       highlight: "scalable"
     },
     description: "I’m a full-stack developer learning by building scalable applications and improving my backend and system design skills through real projects.",
-    ctaPrimary: { label: 'Download Resume', href: '/resume.pdf', download: 'Vivek_Barman_Resume.pdf' },
+    ctaPrimary: { label: 'Resume ⤓', href: '/resume.pdf', download: 'Vivek_Barman_Resume.pdf' },
     ctaSecondary: { label: 'See My Work', href: '/work?mode=work' }
   },
 
   // Theme Colors
   theme: {
     light: {
-      primary: '#E57CD8',
-      secondary: '#412A4C',
-      accent: '#E57CD8',
-      bg: '#FEFBFA',
-      text: '#2C1338',
-      border: 'rgba(44, 19, 56, 0.1)',
-      inactiveBlend: '#FEFBFA'
+      primary: '#18181B',
+      secondary: '#09090B',
+      accent: '#52525B',
+      bg: '#FAFAFA',
+      text: '#09090B',
+      border: 'rgba(0, 0, 0, 0.08)',
+      inactiveBlend: '#F4F4F5'
     },
     dark: {
-      primary: '#E57CD8',
-      secondary: '#FEFBFA',
-      accent: '#E57CD8',
-      bg: '#120A17',
-      text: '#FEFBFA',
-      border: 'rgba(254, 251, 250, 0.1)',
-      inactiveBlend: '#3c3742'
+      primary: '#EDEDED',
+      secondary: '#FAFAFA',
+      accent: '#A1A1AA',
+      bg: '#0A0B0E',
+      text: '#FAFAFA',
+      border: 'rgba(255, 255, 255, 0.08)',
+      inactiveBlend: '#14151B'
     }
   },
 
