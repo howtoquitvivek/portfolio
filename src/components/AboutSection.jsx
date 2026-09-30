@@ -47,13 +47,15 @@ if (typeof window !== 'undefined') {
 
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isFooterInView, setIsFooterInView] = useState(false);
+
   const sections = sectionsData.map(s => ({
     ...s,
     image: getThemedAsset('about', 'pc', s.id),
     mobileImage: getThemedAsset('about', 'mobile', s.id)
   }));
 
-  const current = activeIndex !== null && activeIndex >= 0 ? sections[activeIndex] : sections[0];
+  const current = sections[activeIndex] || sections[0];
 
   // Preload and keep ready in DOM cache
   useEffect(() => {
@@ -65,7 +67,7 @@ export default function AboutSection() {
     });
   }, [sections]);
 
-  // Smoothly collapse expanded mobile image only when user has scrolled deep into the Footer
+  // Gracefully and slowly dim the mobile image preview when user scrolls down to the Footer/Contact section
   useEffect(() => {
     const contactEl = document.querySelector('#contact');
     if (!contactEl) return;
@@ -73,19 +75,13 @@ export default function AboutSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // Only collapse if the footer is genuinely taking over the screen (top is in upper 40% of viewport)
-          if (
-            entry.isIntersecting && 
-            entry.boundingClientRect.top < window.innerHeight * 0.4 &&
-            typeof window !== 'undefined' && 
-            window.innerWidth <= 1024
-          ) {
-            setActiveIndex(null);
-          }
+          const inView = entry.isIntersecting && entry.boundingClientRect.top < window.innerHeight * 0.45;
+          setIsFooterInView(inView);
         });
       },
       {
-        threshold: [0.35, 0.6, 0.8],
+        threshold: [0, 0.15, 0.3, 0.5, 0.7],
+        rootMargin: '0px 0px -40px 0px'
       }
     );
 
@@ -94,6 +90,17 @@ export default function AboutSection() {
   }, []);
 
   const getTabClassAndStyle = (i) => {
+    if (isFooterInView) {
+      return {
+        className: 'about-tab-vertical about-tab-vertical--inactive',
+        style: {
+          opacity: 0.65,
+          WebkitMaskImage: 'none',
+          maskImage: 'none',
+        },
+      };
+    }
+
     if (activeIndex === null) {
       return {
         className: 'about-tab-vertical about-tab-vertical--inactive',
@@ -171,53 +178,43 @@ export default function AboutSection() {
             const isActive = i === activeIndex;
 
             return (
-              <button
-                key={section.id}
-                type="button"
-                className={className}
-                style={style}
-                onClick={() => setActiveIndex(prev => (prev === i && typeof window !== 'undefined' && window.innerWidth <= 1024) ? null : i)}
-              >
-                {isActive && (
-                  <motion.div
-                    layoutId="about-indicator"
-                    className="about-tab-indicator"
-                    transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                  />
-                )}
-                <div className="about-tab-vertical__text">
-                  <h3 className="about-tab-vertical__title">{section.title}</h3>
-                  <p className="about-tab-vertical__description">{section.description}</p>
-                  {/* Mobile Image (Accordion Style) */}
-                  <AnimatePresence initial={false}>
-                    {isActive && (
-                      <motion.div 
-                        className="about-tab-mobile-image"
-                        initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                        animate={{ height: 'auto', opacity: 1, marginTop: 20 }}
-                        exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                        transition={{ 
-                          height: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.28, ease: "easeOut" },
-                          marginTop: { duration: 0.28 }
-                        }}
-                      >
-                        <img 
-                          src={section.mobileImage} 
-                          alt={section.label}
-                          loading="eager"
-                          decoding="async"
-                        />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+              <div key={section.id} className="about-tab-item-container">
+                <button
+                  type="button"
+                  className={className}
+                  style={style}
+                  onClick={() => setActiveIndex(prev => (prev === i && typeof window !== 'undefined' && window.innerWidth <= 1024) ? null : i)}
+                >
+                  {isActive && !isFooterInView && (
+                    <motion.div
+                      layoutId="about-indicator"
+                      className="about-tab-indicator"
+                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                    />
+                  )}
+                  <div className="about-tab-vertical__text">
+                    <h3 className="about-tab-vertical__title">{section.title}</h3>
+                    <p className="about-tab-vertical__description">{section.description}</p>
+                  </div>
+                </button>
+
+                {/* Mobile Image (Renders directly beneath whichever section is selected, smoothly closes when near footer) */}
+                <div className={`about-tab-mobile-accordion ${isActive && !isFooterInView ? 'open' : ''}`}>
+                  <div className="about-tab-mobile-accordion-inner">
+                    <img 
+                      src={section.mobileImage} 
+                      alt={section.label}
+                      loading="eager"
+                      decoding="async"
+                    />
+                  </div>
                 </div>
-              </button>
+              </div>
             );
           })}
         </div>
 
-        {/* Right Image Display Segment */}
+        {/* Right Image Display Segment (Desktop) */}
         <div className="about-content-area">
           <div className="about-image-display-wrapper">
             <AnimatePresence mode="wait">
@@ -229,7 +226,7 @@ export default function AboutSection() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.15 }}
               >
-                <img src={current.image} alt={current.label} />
+                <img src={current.image} alt={current.label} loading="eager" decoding="async" />
               </motion.div>
             </AnimatePresence>
           </div>
