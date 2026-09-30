@@ -220,11 +220,7 @@ export default function Header() {
               {isThemeExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
             </button>
           </div>
-        ) : (
-          <div style={{ display: 'flex', alignItems: 'center', marginLeft: '8px' }}>
-            <ThemeToggle />
-          </div>
-        )}
+        ) : null}
       </div>
     </motion.header>
   );
