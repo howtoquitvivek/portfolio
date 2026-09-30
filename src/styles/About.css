@@ -116,7 +116,7 @@
   border-radius: 0;
   object-fit: cover;
   border: none;
-  filter: brightness(0.72) contrast(1.12) saturate(0.7) drop-shadow(0 10px 30px rgba(0, 0, 0, 0.5));
+  filter: saturate(0.85) contrast(1.28) drop-shadow(0 12px 35px rgba(0, 0, 0, 0.65));
   transition: filter 0.3s ease;
 }
 
@@ -154,13 +154,13 @@
   object-fit: contain;
   object-position: left center; /* Keep the left/important part of the image in view */
   display: block;
-  filter: brightness(0.72) contrast(1.12) saturate(0.7) drop-shadow(0 15px 40px rgba(0, 0, 0, 0.6));
+  filter: saturate(0.85) contrast(1.28) drop-shadow(0 18px 45px rgba(0, 0, 0, 0.75));
   transition: filter 0.3s ease;
 }
 
 [data-theme="light"] .about-image-display img,
 [data-theme="light"] .about-tab-mobile-image img {
-  filter: brightness(0.95) contrast(1.02) saturate(0.85);
+  filter: saturate(0.9) contrast(1.15) drop-shadow(0 12px 30px rgba(0, 0, 0, 0.15));
 }
 
 /* ── Responsive ── */

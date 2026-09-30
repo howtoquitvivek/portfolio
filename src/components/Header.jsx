@@ -36,7 +36,7 @@ export default function Header() {
       if (!isHeroSection() && !isHovered && !isThemeExpanded) {
         setIsVisible(false);
       }
-    }, 4000);
+    }, 3000);
   }, [isHeroSection, isHovered, isThemeExpanded]);
 
   useEffect(() => {
@@ -186,40 +186,45 @@ export default function Header() {
           Let's Talk
         </a>
         
-        <div className="theme-collapsible-wrapper">
-          <motion.div
-            initial={false}
-            animate={{ 
-              width: isThemeExpanded ? 'auto' : 0, 
-              opacity: isThemeExpanded ? 1 : 0,
-              x: isThemeExpanded ? 0 : 20 
-            }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '8px 0' }}
-          >
-            <div style={{ paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ThemeToggle onToggle={() => setTimeout(() => setIsThemeExpanded(false), 400)} />
-              <EyeDropperTool />
-              <button
-                className="eyedropper-btn"
-                onClick={handleOpenTuner}
-                title="Journey Curve & Flow Tuner"
-                aria-label="Tune Milestones Curve"
-              >
-                <Sliders size={18} />
-              </button>
-            </div>
-          </motion.div>
-          
-          
-          <button 
-            className={`theme-expand-btn ${isThemeExpanded ? 'active' : ''}`}
-            onClick={() => setIsThemeExpanded(!isThemeExpanded)}
-            aria-label={isThemeExpanded ? "Collapse theme" : "Expand theme"}
-          >
-            {isThemeExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
-          </button>
-        </div>
+        {import.meta.env.DEV ? (
+          <div className="theme-collapsible-wrapper">
+            <motion.div
+              initial={false}
+              animate={{ 
+                width: isThemeExpanded ? 'auto' : 0, 
+                opacity: isThemeExpanded ? 1 : 0,
+                x: isThemeExpanded ? 0 : 20 
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', padding: '8px 0' }}
+            >
+              <div style={{ paddingRight: '4px', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <ThemeToggle onToggle={() => setTimeout(() => setIsThemeExpanded(false), 400)} />
+                <EyeDropperTool />
+                <button
+                  className="eyedropper-btn"
+                  onClick={handleOpenTuner}
+                  title="Journey Curve & Flow Tuner"
+                  aria-label="Tune Milestones Curve"
+                >
+                  <Sliders size={18} />
+                </button>
+              </div>
+            </motion.div>
+            
+            <button 
+              className={`theme-expand-btn ${isThemeExpanded ? 'active' : ''}`}
+              onClick={() => setIsThemeExpanded(!isThemeExpanded)}
+              aria-label={isThemeExpanded ? "Collapse dev tools" : "Expand dev tools"}
+            >
+              {isThemeExpanded ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+            </button>
+          </div>
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', marginLeft: '8px' }}>
+            <ThemeToggle />
+          </div>
+        )}
       </div>
     </motion.header>
   );

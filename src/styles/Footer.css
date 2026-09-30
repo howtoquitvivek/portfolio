@@ -32,6 +32,80 @@
   justify-content: center;
 }
 
+/* ── Brushed Steel CTA Button ── */
+.btn-steel {
+  background: linear-gradient(180deg, #383B44 0%, #202229 50%, #15171C 100%);
+  color: #F4F4F5 !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+    0 6px 20px rgba(0, 0, 0, 0.45),
+    0 2px 5px rgba(0, 0, 0, 0.35);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 14px 34px;
+  font-size: 1.05rem;
+  border-radius: var(--radius-button, 12px);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-steel::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: transform 0.6s ease;
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.btn-steel:hover {
+  background: linear-gradient(180deg, #464A55 0%, #292C35 50%, #1B1D23 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #FFFFFF !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.7),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+    0 10px 28px rgba(0, 0, 0, 0.55),
+    0 0 16px rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+}
+
+.btn-steel:hover::before {
+  transform: translateX(250%) skewX(-20deg);
+}
+
+.btn-steel:active {
+  transform: scale(0.98) translateY(0);
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.7),
+    0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="light"] .btn-steel {
+  background: linear-gradient(180deg, #E5E7EB 0%, #CCD0D9 50%, #B8BCC7 100%);
+  color: #18181B !important;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.95),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2),
+    0 4px 14px rgba(0, 0, 0, 0.15);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+[data-theme="light"] .btn-steel:hover {
+  background: linear-gradient(180deg, #ECEEF2 0%, #D8DCE5 50%, #C4C8D4 100%);
+  border-color: rgba(0, 0, 0, 0.35);
+  color: #09090B !important;
+}
+
 /* ── Waves Section ── */
 .footer-waves-container {
   position: relative;

@@ -44,7 +44,7 @@ export default function Footer() {
                   href={isMobile ? contactLinks.cta.mobile : contactLinks.cta.pc} 
                   target={isMobile ? "_self" : "_blank"} 
                   rel="noopener noreferrer" 
-                  className="btn btn-primary"
+                  className="btn btn-steel"
                 >
                   Start a project with me
                 </a>

@@ -307,9 +307,9 @@ export default function AchievementsSection() {
         </div>
       </div>
 
-      {/* Visual Tuner Drawer with Curve & Flow Tabs */}
+      {/* Visual Tuner Drawer with Curve & Flow Tabs (Dev-only) */}
       <AnimatePresence>
-        {isEditorOpen && (
+        {import.meta.env.DEV && isEditorOpen && (
           <motion.div
             className="curve-editor-drawer"
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
