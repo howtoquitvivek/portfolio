@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../styles/About.css';
 
@@ -43,9 +43,43 @@ export default function AboutSection() {
     mobileImage: getThemedAsset('about', 'mobile', s.id)
   }));
 
-  const current = sections[activeIndex];
+  const current = activeIndex !== null && activeIndex >= 0 ? sections[activeIndex] : sections[0];
+
+  // Auto-collapse expanded mobile image when user scrolls into the Footer / Contact CTA section
+  useEffect(() => {
+    const contactEl = document.querySelector('#contact');
+    if (!contactEl) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && typeof window !== 'undefined' && window.innerWidth <= 1024) {
+            setActiveIndex(null);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px',
+      }
+    );
+
+    observer.observe(contactEl);
+    return () => observer.disconnect();
+  }, []);
 
   const getTabClassAndStyle = (i) => {
+    if (activeIndex === null) {
+      return {
+        className: 'about-tab-vertical about-tab-vertical--inactive',
+        style: {
+          opacity: 0.85,
+          WebkitMaskImage: 'none',
+          maskImage: 'none',
+        },
+      };
+    }
+
     if (i === activeIndex) {
       return {
         className: 'about-tab-vertical about-tab-vertical--active',
@@ -117,7 +151,7 @@ export default function AboutSection() {
                 type="button"
                 className={className}
                 style={style}
-                onClick={() => setActiveIndex(i)}
+                onClick={() => setActiveIndex(prev => (prev === i && typeof window !== 'undefined' && window.innerWidth <= 1024) ? null : i)}
               >
                 {isActive && (
                   <motion.div
