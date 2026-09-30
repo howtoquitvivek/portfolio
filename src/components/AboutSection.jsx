@@ -35,6 +35,16 @@ const sectionsData = [
   },
 ];
 
+// Preload all about section assets into browser memory immediately
+if (typeof window !== 'undefined') {
+  sectionsData.forEach(s => {
+    const pcImg = new Image();
+    pcImg.src = getThemedAsset('about', 'pc', s.id);
+    const mobImg = new Image();
+    mobImg.src = getThemedAsset('about', 'mobile', s.id);
+  });
+}
+
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const sections = sectionsData.map(s => ({
@@ -45,7 +55,17 @@ export default function AboutSection() {
 
   const current = activeIndex !== null && activeIndex >= 0 ? sections[activeIndex] : sections[0];
 
-  // Auto-collapse expanded mobile image when user scrolls into the Footer / Contact CTA section
+  // Preload and keep ready in DOM cache
+  useEffect(() => {
+    sections.forEach(s => {
+      const img1 = new Image();
+      img1.src = s.image;
+      const img2 = new Image();
+      img2.src = s.mobileImage;
+    });
+  }, [sections]);
+
+  // Smoothly collapse expanded mobile image only when user has scrolled deep into the Footer
   useEffect(() => {
     const contactEl = document.querySelector('#contact');
     if (!contactEl) return;
@@ -53,14 +73,19 @@ export default function AboutSection() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && typeof window !== 'undefined' && window.innerWidth <= 1024) {
+          // Only collapse if the footer is genuinely taking over the screen (top is in upper 40% of viewport)
+          if (
+            entry.isIntersecting && 
+            entry.boundingClientRect.top < window.innerHeight * 0.4 &&
+            typeof window !== 'undefined' && 
+            window.innerWidth <= 1024
+          ) {
             setActiveIndex(null);
           }
         });
       },
       {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px',
+        threshold: [0.35, 0.6, 0.8],
       }
     );
 
@@ -164,16 +189,25 @@ export default function AboutSection() {
                   <h3 className="about-tab-vertical__title">{section.title}</h3>
                   <p className="about-tab-vertical__description">{section.description}</p>
                   {/* Mobile Image (Accordion Style) */}
-                  <AnimatePresence>
+                  <AnimatePresence initial={false}>
                     {isActive && (
                       <motion.div 
                         className="about-tab-mobile-image"
                         initial={{ height: 0, opacity: 0, marginTop: 0 }}
-                        animate={{ height: 'auto', opacity: 1, marginTop: 24 }}
+                        animate={{ height: 'auto', opacity: 1, marginTop: 20 }}
                         exit={{ height: 0, opacity: 0, marginTop: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ 
+                          height: { duration: 0.38, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.28, ease: "easeOut" },
+                          marginTop: { duration: 0.28 }
+                        }}
                       >
-                        <img src={section.mobileImage} alt={section.label} />
+                        <img 
+                          src={section.mobileImage} 
+                          alt={section.label}
+                          loading="eager"
+                          decoding="async"
+                        />
                       </motion.div>
                     )}
                   </AnimatePresence>
