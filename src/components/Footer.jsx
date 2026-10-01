@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import '../styles/Footer.css';
 import { config } from '../config';
 
@@ -20,13 +20,6 @@ export default function Footer() {
       mobile: `mailto:${contact.email}?subject=Hello%20Vivek&body=Hi%20there,%0A%0AI'm%20reaching%20out%20after%20visiting%20your%20portfolio.%20I'd%20love%20to%20connect!`
     }
   };
-
-  const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'Work', path: '/work' },
-    { label: 'About', path: '/about' },
-    { label: 'Contact', path: '#contact' }
-  ];
 
   return (
     <footer className="footer" id="contact">

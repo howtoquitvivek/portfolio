@@ -10,9 +10,9 @@ export default function FloatingCTA() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Always show on sub-pages (except Work page)
+    // Always show on sub-pages
     if (location.pathname !== '/') {
-      setIsVisible(location.pathname !== '/work');
+      setIsVisible(true);
       return;
     }
 
