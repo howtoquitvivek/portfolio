@@ -7,21 +7,14 @@ import {
   BarChart2,
   Mic,
   CreditCard,
-  BookOpen,
-  BadgeCheck,
-  Code,
-  Mail,
-  UserCheck,
-  Smartphone
+  BookOpen
 } from 'lucide-react';
-import { FaGithub as Github } from 'react-icons/fa';
 
 const EMAIL = 'vivekbarman425@gmail.com';
 
 export const config = {
   // Global Settings
-  activeThemeName: 'pink',
-  faviconPath: '/favicon_io_3/',
+  faviconPath: '/favicon/',
 
   // Contact Information
   contact: {
@@ -125,64 +118,6 @@ export const config = {
       { label: 'Bill', icon: Mic, isMain: true },
       { label: 'Payments', icon: CreditCard },
       { label: 'Khata', icon: BookOpen }
-    ]
-  },
-
-  // Work Page Configuration
-  work: {
-    title: "Work With Me",
-    subtitle: "I'm open to real-world projects, collaborations, and learning opportunities where I can build and improve as a developer.",
-    tabs: [
-      {
-        id: 'webdev',
-        label: 'Websites',
-        heading: 'Website Development',
-        description: 'Building secure, data-driven applications with MERN, Firebase, and FastAPI. Specialist in, Businness portfolios, robust auth systems and complex interactive dashboards.',
-        features: ['MERN & Firebase Integration', 'Flask/FastAPI Backends', 'Secure Auth & Dashboards', 'End-to-End Scalability'],
-        cta: 'Start a project',
-        ctaHref: `mailto:${EMAIL}?subject=Web Development Project`,
-        item: 'webdev'
-      },
-      {
-        id: 'ml',
-        label: 'AI & ML',
-        heading: 'Data-Driven Problem Solving',
-        description: 'From text to image dataset analysis. I build predictive models/implement exising models and create synthetic datasets using Scikit-learn and HuggingFace.',
-        features: ['Scikit-learn & HuggingFace', 'Anomaly Detection Models', 'Geospatial Data Analysis', 'Synthetic Dataset Design'],
-        cta: 'Discuss an AI project',
-        ctaHref: `mailto:${EMAIL}?subject=AI/ML Project`,
-        item: 'ml'
-      },
-      {
-        id: 'android',
-        label: 'Android',
-        heading: 'Android Mobile Apps',
-        description: 'Developing performant mobile solutions with Expo and React Native. Focused on fintech-grade UI/UX and rapid prototyping.',
-        features: ['Expo & React Native', 'Fintech UI/UX Design', 'Native Feature Integration', 'Rapid Prototyping'],
-        cta: 'Build an app together',
-        ctaHref: `mailto:${EMAIL}?subject=Android App Project`,
-        item: 'android'
-      },
-      {
-        id: 'opensource',
-        label: 'Collaborate',
-        heading: 'Open Source Contributor',
-        description: 'Active contributor to the MetaBrainz ecosystem (ListenBrainz). I focus on core component building and codebase stability while never ignoring clear written explanations of my code.',
-        features: ['ListenBrainz Contributor', 'Component Development', 'Bug Fixing & Refactoring', 'Collaborative Architecture'],
-        cta: 'View my GitHub',
-        ctaHref: 'https://github.com/howtoquitvivek',
-        item: 'opensource'
-      },
-      {
-        id: 'hireme',
-        label: 'Freelance',
-        heading: 'Business & Custom Solutions',
-        description: 'High-velocity delivery for business portfolios and custom projects. 5-day turnaround with full end-to-end management and support.',
-        features: ['5-Day Rapid Delivery', 'Post-Launch Support', 'Professional Business Portfolios', 'End-to-End Project Management'],
-        cta: 'Get in touch',
-        ctaHref: `mailto:${EMAIL}?subject=Freelance Opportunity`,
-        item: 'hireme'
-      }
     ]
   },
 
