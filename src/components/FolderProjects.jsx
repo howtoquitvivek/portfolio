@@ -1,9 +1,8 @@
 import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Search, Globe, Code2, Eye, Shield, Cpu, ExternalLink, ChevronRight } from 'lucide-react';
-import { FaGithub as Github } from 'react-icons/fa';
-import '../../styles/FolderCard.css';
-import '../../styles/Projects.css';
+import { Search, Globe, Code2, Eye, Shield, Cpu, ChevronRight } from 'lucide-react';
+import '../styles/FolderCard.css';
+import '../styles/Projects.css';
 
 const FILE_ICONS = [
   <Globe key="globe" className="file-icon" />,
@@ -133,7 +132,7 @@ export const FolderProjects = ({ projects = [] }) => {
                 className={fileClass}
                 style={{
                   opacity: searchQuery && !isMatch ? 0.25 : 1,
-                  pointerEvents: positionIndex === 0 ? 'auto' : 'none', // Optional: Only front card is clickable, though handleFileClick manages it
+                  pointerEvents: positionIndex === 0 ? 'auto' : 'none',
                 }}
                 onClick={(e) => handleFileClick(e, project)}
                 title={`Click to view ${project.title}`}
@@ -165,7 +164,6 @@ export const FolderProjects = ({ projects = [] }) => {
           </div>
         </div>
       </div>
-
 
       {/* PROJECT PRESENTATION SIDE PANEL */}
       <AnimatePresence>

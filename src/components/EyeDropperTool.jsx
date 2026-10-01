@@ -5,7 +5,6 @@ import '../styles/EyeDropper.css';
 
 export default function EyeDropperTool() {
   const [pickedColor, setPickedColor] = useState(null);
-  const [toastMessage, setToastMessage] = useState('');
   const [showToast, setShowToast] = useState(false);
   const [copied, setCopied] = useState(false);
   const colorInputRef = useRef(null);
@@ -20,7 +19,6 @@ export default function EyeDropperTool() {
       navigator.clipboard.writeText(hex).catch(() => {});
     }
 
-    setToastMessage(`Theme updated to ${hex.toUpperCase()} (Copied!)`);
     setShowToast(true);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
@@ -35,7 +33,7 @@ export default function EyeDropperTool() {
         if (result && result.sRGBHex) {
           applyColor(result.sRGBHex);
         }
-      } catch (err) {
+      } catch {
         // User canceled selection or dismissed loupe
       }
     } else if (colorInputRef.current) {

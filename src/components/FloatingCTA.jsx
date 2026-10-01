@@ -2,17 +2,14 @@ import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
-import ThemeToggle from './ThemeToggle';
-
 export default function FloatingCTA() {
-  const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const isSubPage = location.pathname !== '/';
+  const [isVisible, setIsVisible] = useState(isSubPage);
 
   useEffect(() => {
-    // Always show on sub-pages
     if (location.pathname !== '/') {
-      setIsVisible(true);
       return;
     }
 

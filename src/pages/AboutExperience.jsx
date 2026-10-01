@@ -1,18 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import {
-  Rocket,
-  Atom,
-  Beaker,
-  Database,
-  TrendingUp,
-  BarChart2,
-  Mic,
-  CreditCard,
-  BookOpen,
-  User,
-  ChevronRight
-} from 'lucide-react';
+import { User, ChevronRight } from 'lucide-react';
 import '../styles/AboutExperience.css';
 
 import { config } from '../config';
@@ -104,7 +92,7 @@ export default function AboutExperience() {
               <div className="skills-section">
                 <h2 className="section-label">Skills Proficiency</h2>
                 <div className="skills-list">
-                  {skills.map((skill, i) => (
+                  {skills.map((skill) => (
                     <div key={skill.name} className="skill-item">
                       <div className="skill-header">
                         <div className="skill-icon" style={{ color: skill.color }}>{React.createElement(skill.icon, { size: 16 })}</div>

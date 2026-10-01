@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { useLocation } from 'react-router-dom';
 import '../styles/Footer.css';
 import { config } from '../config';

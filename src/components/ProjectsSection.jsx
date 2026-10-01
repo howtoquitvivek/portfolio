@@ -1,5 +1,5 @@
 import '../styles/Projects.css';
-import { FolderProjects } from './v1/FolderProjects';
+import { FolderProjects } from './FolderProjects';
 
 const projects = [
   {

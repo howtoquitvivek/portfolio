@@ -120,7 +120,9 @@ export default function AchievementsSection() {
       };
       try {
         localStorage.setItem('milestone_curve_config', JSON.stringify(updated));
-      } catch {}
+      } catch {
+        /* ignore localStorage quota/access error */
+      }
       return updated;
     });
   };
@@ -133,7 +135,9 @@ export default function AchievementsSection() {
       };
       try {
         localStorage.setItem('milestone_flow_config', JSON.stringify(updated));
-      } catch {}
+      } catch {
+        /* ignore localStorage quota/access error */
+      }
       return updated;
     });
   };

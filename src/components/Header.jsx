@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Sliders } from 'lucide-react';
 import '../styles/Header.css';
 import ThemeToggle from './ThemeToggle';
@@ -76,12 +76,9 @@ export default function Header() {
   useEffect(() => {
     if (isVisible && !isHeroSection()) {
       resetAutoHideTimer();
-    } else if (isHeroSection()) {
-      setIsVisible(true);
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-        timerRef.current = null;
-      }
+    } else if (timerRef.current) {
+      clearTimeout(timerRef.current);
+      timerRef.current = null;
     }
 
     return () => {
