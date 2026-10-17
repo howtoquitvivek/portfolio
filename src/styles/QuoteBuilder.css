@@ -1,0 +1,404 @@
+/* ==========================================================================
+   Quote Builder & Interactive Estimator - Clean & Professional
+   ========================================================================== */
+
+.quote-layout {
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+/* Stepper Progress Bar */
+.quote-stepper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 8px 12px;
+  background: var(--color-inactive-blend);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  background: none;
+  border: none;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.step-item.active {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.step-item.completed {
+  color: var(--color-primary);
+}
+
+.step-number {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-border);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.step-item.active .step-number {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.step-item.completed .step-number {
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.step-divider {
+  width: 14px;
+  height: 1px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Wizard Form Body */
+.step-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin-bottom: 4px;
+}
+
+.step-subtext {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: var(--color-accent);
+  margin-bottom: 18px;
+}
+
+/* Radio / Card Selectable Options */
+.quote-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selectable-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+  text-align: left;
+  width: 100%;
+}
+
+.selectable-card:hover {
+  border-color: color-mix(in srgb, var(--color-text) 25%, transparent);
+}
+
+.selectable-card.selected {
+  border-color: var(--color-primary);
+  background: var(--color-inactive-blend);
+}
+
+.option-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.option-radio {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.selectable-card.selected .option-radio {
+  border-color: var(--color-primary);
+}
+
+.option-radio-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  transform: scale(0);
+  transition: transform 0.15s ease;
+}
+
+.selectable-card.selected .option-radio-dot {
+  transform: scale(1);
+}
+
+.option-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.option-desc {
+  font-size: 0.82rem;
+  color: var(--color-accent);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.option-price-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+/* Checkbox Addon Card */
+.selectable-checkbox-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.selectable-checkbox-card:hover {
+  border-color: color-mix(in srgb, var(--color-text) 25%, transparent);
+}
+
+.selectable-checkbox-card.selected {
+  border-color: var(--color-primary);
+  background: var(--color-inactive-blend);
+}
+
+.option-checkbox-box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.selectable-checkbox-card.selected .option-checkbox-box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-bg);
+}
+
+/* Form Inputs */
+.quote-form-group {
+  margin-bottom: 16px;
+}
+
+.quote-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-primary);
+  margin-bottom: 6px;
+}
+
+.quote-label span.req {
+  color: #ef4444;
+  margin-left: 2px;
+}
+
+.quote-input,
+.quote-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--color-inactive-blend);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--color-text);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.quote-input:focus,
+.quote-textarea:focus {
+  border-color: var(--color-primary);
+}
+
+.quote-error-text {
+  font-size: 0.78rem;
+  color: #ef4444;
+  margin-top: 4px;
+}
+
+/* Navigation Buttons in Wizard */
+.quote-nav-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Right-Column Dynamic Estimate Sticky Panel */
+.estimate-sticky-panel {
+  position: sticky;
+  top: 96px;
+}
+
+.estimate-box {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.estimate-header {
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 14px;
+}
+
+.estimate-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+}
+
+.estimate-price-range {
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-primary);
+  margin: 6px 0 4px 0;
+}
+
+.estimate-price-subtext {
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  line-height: 1.4;
+}
+
+/* Itemized Breakdown List */
+.estimate-breakdown-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.breakdown-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 0.84rem;
+}
+
+.breakdown-item-name {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.breakdown-item-details {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-top: 1px;
+}
+
+.breakdown-item-cost {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--color-primary);
+  white-space: nowrap;
+}
+
+/* Exclusions in summary */
+.estimate-exclusions-box {
+  background: var(--color-inactive-blend);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 0.78rem;
+  color: var(--color-accent);
+  line-height: 1.45;
+}
+
+.estimate-exclusions-title {
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+/* Submission Action Buttons */
+.submission-actions-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.quote-confirmation-card {
+  text-align: center;
+  padding: 16px 0;
+}
+
+.quote-ref-code {
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background: var(--color-inactive-blend);
+  border: 1px solid var(--color-border);
+  display: inline-block;
+  color: var(--color-primary);
+  margin: 10px 0 16px 0;
+}
+
+@media (max-width: 900px) {
+  .quote-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .estimate-sticky-panel {
+    position: static;
+  }
+}
